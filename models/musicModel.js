@@ -11,7 +11,8 @@ class Music extends Model{};
             type: DataTypes.STRING
         },
         mp3Url:{
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         songDescription:{
             type: DataTypes.STRING,

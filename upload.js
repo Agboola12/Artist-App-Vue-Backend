@@ -13,7 +13,7 @@ cloudinary.config({
 
 
 
-async function handleUpload(req) {
+async function handleUpload(req, res) {
   const b64 = Buffer.from(req.file.buffer).toString("base64");
   let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
   const res = await cloudinary.uploader.upload(dataURI, {

@@ -8,7 +8,7 @@ const createMusic = async(req,res) =>{
         const newUser = {
           songTitle: req.body.songTitle,
           imageUrl: cldRes?.secure_url, 
-          // mp3Url: mp3Upload.secure_url,
+          mp3Url: req.body.mp3Url,
           songDescription: req.body.songDescription,
           websiteUrl: req.body.websiteUrl,
           tiktokHandle: req.body.tiktokHandle,
@@ -17,21 +17,21 @@ const createMusic = async(req,res) =>{
           artistId: req.body.artistId,
         };
         console.log(newUser);
-        Music.create(newUser)
-        .then((response) => {
-            res.json({
-                message: "music upload successfully",
-                status: true
-            })
-            console.log(response);
-        })
-        .catch((err) => {
-            res.status(400).json({
-                message: " error in music uploading ",
-                status: false
-            })
-            console.log(err);
-        })
+        // Music.create(newUser)
+        // .then((response) => {
+        //     res.json({
+        //         message: "music upload successfully",
+        //         status: true
+        //     })
+        //     console.log(response);
+        // })
+        // .catch((err) => {
+        //     res.status(400).json({
+        //         message: " error in music uploading ",
+        //         status: false
+        //     })
+        //     console.log(err);
+        // })
   }
   catch (error) {
     console.error(error);
