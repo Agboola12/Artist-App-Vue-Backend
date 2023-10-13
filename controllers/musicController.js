@@ -1,0 +1,147 @@
+const Music = require("../models/musicModel");
+const { handleUpload } = require("../upload");
+
+const createMusic = async(req,res) =>{
+  try{
+    const cldRes= await handleUpload(req);
+     
+        const newUser = {
+          songTitle: req.body.songTitle,
+          imageUrl: cldRes?.secure_url, 
+          // mp3Url: mp3Upload.secure_url,
+          songDescription: req.body.songDescription,
+          websiteUrl: req.body.websiteUrl,
+          tiktokHandle: req.body.tiktokHandle,
+          facebookHandle: req.body.facebookHandle,
+          instagramHandle: req.body.instagramHandle,
+          artistId: req.body.artistId,
+        };
+        console.log(newUser);
+        Music.create(newUser)
+        .then((response) => {
+            res.json({
+                message: "music upload successfully",
+                status: true
+            })
+            console.log(response);
+        })
+        .catch((err) => {
+            res.status(400).json({
+                message: " error in music uploading ",
+                status: false
+            })
+            console.log(err);
+        })
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Internal server error",
+      status: false,
+      error: error.message,
+    });
+  }
+}
+
+const songDetail =async (req, res) => {
+    const musicId = req.params.id;
+    // console.log(musicId);
+
+    try {
+        const user = await Music.findByPk(musicId);
+        // console.log(user);
+
+        if (!user) {
+          return res.status(404).json({ error: "User not found" });
+        }
+    
+        res.status(200).json(user);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error fetching user details" });
+      }
+}
+
+const getAllSong = async (req, res)=> {
+ 
+  try {
+    const artistId = req.user.id;   
+    console.log(artistId);   
+    
+      const user = await Music.findOne({artistId});
+      console.log(user);
+  
+      if (!user) {
+        return res.status(404).json({ status: false, error: "User not found" });
+      }
+  
+      res.status(200).json({ status: true, data: user });
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+    res.status(500).json({ status: false, error: "Error fetching user details" });
+  }
+  
+}
+
+
+const delSong = async (req, res) => {
+    const musicId = req.params.id;
+    console.log(musicId);
+  
+    try {
+      const music = await Music.findByPk(musicId);
+  
+      if (!music) {
+        return res.status(404).json({ error: "Music record not found" });
+      }
+  
+      await music.destroy();
+  
+      res.status(204).end(); 
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Error deleting music record" });
+    }
+
+}
+
+const updateSong = async (req, res)=>{
+
+  const cldRes = await handleUpload(req);    
+    const songId = req.params.id
+    
+    const {songTitle, songDescription, facebookHandle, instagramHandle, websiteUrl, tiktokHandle } = req.body; 
+    try {
+        const user = await Music.findByPk(songId);
+        // console.log(user);
+    
+        if (!user) {
+          return res.status(404).json({ error: "Song not found" });
+        }
+    
+        user.songTitle = songTitle;
+        if (req.file) {
+          user.imageUrl = cldRes.secure_url;
+        }
+        user.songDescription = songDescription;
+        user.websiteUrl = websiteUrl;
+        user.tiktokHandle = tiktokHandle;
+        user.facebookHandle = facebookHandle;
+        user.instagramHandle = instagramHandle;
+
+        await user.save();
+    
+        res.status(200).json(user); 
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error updating song details" });
+      }
+}
+  
+
+
+
+
+
+
+module.exports ={createMusic, getAllSong, delSong, songDetail , updateSong }
