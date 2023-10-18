@@ -2,22 +2,15 @@ const Music = require("../models/musicModel");
 
 const createMusic = async(req,res) =>{
   try{
-    //  const image = req.file
-    // const imageBuffer = req.files.image[0].buffer;
-    // const mp3Buffer = req.files.mp3[0].buffer;
-    // console.log( mp3Buffer);
     if(req.files){
-      const imageUrl = req.files['image'][0].path
-      const mp3Url = req.files['mp3'][0].path
-    }
-
-    console.log(imageUrl, mp3Url);
-    //  res.json(req.files)
-     return
-        const newUser = {
-          songTitle: req.body.songTitle,
-          imageUrl: image, 
-          mp3Url: req.body.mp3Url,
+      const imageUrl = req.files['image'][0].path;
+      const mp3Url = req.files['mp3'][0].path;
+      // console.log(imageUrl, mp3Url);
+      
+      const newUser = {
+        songTitle: req.body.songTitle,
+          imageUrl: imageUrl, 
+          mp3Url: mp3Url,
           songDescription: req.body.songDescription,
           websiteUrl: req.body.websiteUrl,
           tiktokHandle: req.body.tiktokHandle,
@@ -25,23 +18,24 @@ const createMusic = async(req,res) =>{
           instagramHandle: req.body.instagramHandle,
           artistId: req.body.artistId,
         };
-        console.log(newUser);
-        // Music.create(newUser)
-        // .then((response) => {
-        //     res.json({
-        //         message: "music upload successfully",
-        //         status: true
-        //     })
-        //     console.log(response);
-        // })
-        // .catch((err) => {
-        //     res.status(400).json({
-        //         message: " error in music uploading ",
-        //         status: false
-        //     })
-        //     console.log(err);
-        // })
-  }
+        // console.log(newUser);
+        Music.create(newUser)
+        .then((response) => {
+            res.json({
+                message: "music upload successfully",
+                status: true
+            })
+            console.log(response);
+          })
+          .catch((err) => {
+            res.status(400).json({
+              message: " error in music uploading ",
+              status: false
+            })
+            console.log(err);
+          })
+        }
+      }
   catch (error) {
     console.error(error);
     res.status(500).json({
