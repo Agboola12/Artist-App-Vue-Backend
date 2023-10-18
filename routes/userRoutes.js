@@ -3,7 +3,8 @@ const { createUser, loginUser}=require("../controllers/usercontroller");
 const { createArtist, loginArtist, getArtist, updateProfile } = require("../controllers/artistController");
 const { verifyToken } = require("../middlewares/authMiddleware");
 const { createMusic, delSong, songDetail, getAllSong, updateSong   } = require("../controllers/musicController");
-const { upload} = require ("../upload")
+const { upload} = require("../upload.js")
+
 const Router=express.Router();
 
 Router.post('/createUser',createUser);
@@ -14,8 +15,8 @@ Router.post('/loginArtist', loginArtist)
 Router.get('/getArtist',verifyToken, getArtist)
 Router.put('/updateProfile/:id', upload.single('image'), updateProfile )
 
-Router.post('/createMusic', upload.single('image'), createMusic)
-// Router.post('/createMusic', upload.single("image"), upload.single("mp3"),createMusic)
+Router.post('/createMusic', upload.fields([{name: 'image'}, {name:'mp3'}]), createMusic)
+// Router.post('/createMusic', upload.single("mp3"),createMusic)
 Router.get('/getAllSong', verifyToken, getAllSong)
 Router.get('/songDetail/:id', songDetail )
 Router.delete('/delSong/:id', delSong )

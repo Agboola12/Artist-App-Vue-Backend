@@ -1,13 +1,22 @@
 const Music = require("../models/musicModel");
-const { handleUpload } = require("../upload");
 
 const createMusic = async(req,res) =>{
   try{
-    const cldRes= await handleUpload(req);
-     
+    //  const image = req.file
+    // const imageBuffer = req.files.image[0].buffer;
+    // const mp3Buffer = req.files.mp3[0].buffer;
+    // console.log( mp3Buffer);
+    if(req.files){
+      const imageUrl = req.files['image'][0].path
+      const mp3Url = req.files['mp3'][0].path
+    }
+
+    console.log(imageUrl, mp3Url);
+    //  res.json(req.files)
+     return
         const newUser = {
           songTitle: req.body.songTitle,
-          imageUrl: cldRes?.secure_url, 
+          imageUrl: image, 
           mp3Url: req.body.mp3Url,
           songDescription: req.body.songDescription,
           websiteUrl: req.body.websiteUrl,
