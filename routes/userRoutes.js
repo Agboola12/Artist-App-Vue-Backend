@@ -6,10 +6,11 @@ const { createMusic, delSong, songDetail, getAllSong, updateSong   } = require("
 const { upload} = require("../upload.js")
 
 const Router=express.Router();
-
+// users
 Router.post('/createUser',createUser);
 Router.post('/loginUser', loginUser);
 
+// artist
 Router.post('/createArtist', upload.single("image") ,createArtist)
 Router.post('/loginArtist', loginArtist)
 Router.get('/getArtist',verifyToken, getArtist)
