@@ -72,7 +72,7 @@ const getAllSong = async (req, res)=> {
     console.log(artistId);   
     
       const user = await Music.findOne({artistId});
-      console.log(user);
+      // console.log(user);
   
       if (!user) {
         return res.status(404).json({ status: false, error: "User not found" });

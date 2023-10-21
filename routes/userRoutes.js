@@ -15,8 +15,8 @@ Router.post('/loginArtist', loginArtist)
 Router.get('/getArtist',verifyToken, getArtist)
 Router.put('/updateProfile/:id', upload.single('image'), updateProfile )
 
+//artist music
 Router.post('/createMusic', upload.fields([{name: 'image'}, {name:'mp3'}]), createMusic)
-// Router.post('/createMusic', upload.single("mp3"),createMusic)
 Router.get('/getAllSong', verifyToken, getAllSong)
 Router.get('/songDetail/:id', songDetail )
 Router.delete('/delSong/:id', delSong )
