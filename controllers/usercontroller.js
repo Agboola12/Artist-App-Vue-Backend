@@ -71,5 +71,34 @@ const loginUser = async(req, res)=>{
     }
 }
 
+const getUser = async (req, res) => {
 
-module.exports = { createUser, loginUser }
+    let data = await jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
+    
+    if (!data) {
+        res.send({
+            message: "Invalid Token",
+            status: false
+        })
+    }
+    else {
+        Artist.findByPk(data.id)
+            .then(data => {
+                res.json({
+                    status: true,
+                    data,
+                    message: "artist profile fetched"
+                })
+            })
+            .catch(err => {
+                res.status({
+                    status: false,
+                    message: "problem in fetching artist profile"
+                })
+                console.log(err, "problem getting artist");
+            })
+    }
+}
+
+
+module.exports = { createUser, loginUser, getUser }

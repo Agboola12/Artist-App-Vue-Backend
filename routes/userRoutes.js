@@ -1,5 +1,5 @@
 const express=require("express");
-const { createUser, loginUser}=require("../controllers/usercontroller");
+const { createUser, loginUser, getUser}=require("../controllers/usercontroller");
 const { createArtist, loginArtist, getArtist, updateProfile } = require("../controllers/artistController");
 const { verifyToken } = require("../middlewares/authMiddleware");
 const { createMusic, delSong, songDetail, getAllSong, updateSong   } = require("../controllers/musicController");
@@ -9,6 +9,7 @@ const Router=express.Router();
 // users
 Router.post('/createUser',createUser);
 Router.post('/loginUser', loginUser);
+Router.get('/getUser',verifyToken, getUser)
 
 // artist
 Router.post('/createArtist', upload.single("image") ,createArtist)
