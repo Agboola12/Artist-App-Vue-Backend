@@ -82,7 +82,7 @@ const getUser = async (req, res) => {
         })
     }
     else {
-        Artist.findByPk(data.id)
+        User.findByPk(data.id)
             .then(data => {
                 res.json({
                     status: true,
