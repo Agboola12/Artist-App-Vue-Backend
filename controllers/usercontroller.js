@@ -87,15 +87,15 @@ const getUser = async (req, res) => {
                 res.json({
                     status: true,
                     data,
-                    message: "artist profile fetched"
+                    message: "user profile fetched"
                 })
             })
             .catch(err => {
                 res.status({
                     status: false,
-                    message: "problem in fetching artist profile"
+                    message: "problem in fetching user profile"
                 })
-                console.log(err, "problem getting artist");
+                console.log(err, "problem getting user");
             })
     }
 }
