@@ -151,8 +151,18 @@ const updateProfile = async (req, res) =>{
         console.error(error);
         res.status(500).json({ error: "Error updating user profile" });
       }  
-    
+}
 
+const getAllArtist = async(req,res)=>{
+  try {
+    const artists = await Artist.findAll();
+    res.json(artists);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+        error:' error in fecthing all artists '
+    })
+  }
 }
 
 
@@ -163,4 +173,4 @@ const updateProfile = async (req, res) =>{
   
   
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist }
