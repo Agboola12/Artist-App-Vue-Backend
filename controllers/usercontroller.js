@@ -35,46 +35,44 @@ const createUser = async (req, res) => {
 }
 
 const loginUser = async(req, res)=>{
-    const {email, passWord} = req.body;
-    try{
-        const user = await User.findOne({
-            where: {email}
-        })
-        if(!user){
-            return res.status({
-                status: false,
-                message: "email not correct"
-            }) 
-        }
-        const passwordMatch = await bcrypt.compare(passWord, user.passWord);
-  
+    const { email, passWord } = req.body;
+    try {
+      const user = await User.findOne({
+        where: { email },
+      });
+      if (!user) {
+        return res.status(404).json({ 
+            message: "user not found",
+            status: false
+        });
+      }
+      const passwordMatch = await bcrypt.compare(passWord, user.passWord);
       if (passwordMatch) {
         const token = jwt.sign({ email: user.email, id: user.id }, process.env.JWT_SECRET, {
           expiresIn: "12h", 
         });
-  
         return res.status(200).json({ 
-            message: "Login successful", 
+            message: " user login successful", 
             status: true, 
             token 
         });
       } 
       else {
         return res.status(401).json({ 
-            message: "Wrong information ", 
+            message: "Invalid details", 
             status: false 
         });
       }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Error during login" });
     }
-    catch{
 
-    }
 }
 
 const getUser = async (req, res) => {
-
     let data = await jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
-    
+    console.log(data);
     if (!data) {
         res.send({
             message: "Invalid Token",

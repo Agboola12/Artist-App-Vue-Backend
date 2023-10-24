@@ -17,9 +17,6 @@ const createArtist = async (req, res) => {
         status: false
       })
     }
-    // else  if  (req.file){
-      
-        // const imageUrl = req.files['image'][0].path;
 
         const salt = await bcrypt.genSalt(10);
         const art = {
@@ -60,26 +57,21 @@ const createArtist = async (req, res) => {
 
 const loginArtist = async (req, res) => {
     const { email, passWord } = req.body;
-  
     try {
       const user = await Artist.findOne({
         where: { email },
       });
-  
       if (!user) {
         return res.status(404).json({ 
             message: "Artist not found",
             status: false
         });
       }
-  
       const passwordMatch = await bcrypt.compare(passWord, user.passWord);
-  
       if (passwordMatch) {
         const token = jwt.sign({ email: user.email, id: user.id }, process.env.JWT_SECRET, {
           expiresIn: "12h", 
         });
-  
         return res.status(200).json({ 
             message: "Login successful", 
             status: true, 
