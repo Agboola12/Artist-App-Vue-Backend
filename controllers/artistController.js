@@ -7,15 +7,19 @@ const Music = require("../models/musicModel");
 dotenv.config();
 
 const createArtist = async (req, res) => {
-  const user = await Artist.findOne({ where: { email: req.body.email } })
+  const imageUrl = (req.file.path);
+  console.log(imageUrl);
   try {
+    const user = await Artist.findOne({ where: { email: req.body.email } })
     if (user) {
-      const imageUrl = req.files['image'][0].path;
-         res.status(200).json({
-            message: "email already exist",
-            status: false
-        })
-      }
+      res.status(200).json({
+        message: "email already exist",
+        status: false
+      })
+    }
+    // else  if  (req.file){
+      
+        // const imageUrl = req.files['image'][0].path;
 
         const salt = await bcrypt.genSalt(10);
         const art = {
@@ -27,6 +31,7 @@ const createArtist = async (req, res) => {
           imageUrl: imageUrl, 
           passWord: await bcrypt.hash(req.body.passWord, salt)
         }
+        console.log(art);
         Artist.create(art)
         .then((response) => {
           res.json({
@@ -36,14 +41,19 @@ const createArtist = async (req, res) => {
         })
         .catch((err) => {
             res.status(400).json({
-                message: " error in artist creating ",
-                status: false
+              message: " error in artist creating ",
+              status: false
             })
             console.log(err);
-        })
-    
+          })
+          
   } catch (error) {
-    
+    console.error(error);
+    res.status(500).json({
+      message: "Internal server error",
+      status: false,
+      error: error.message,
+    })
   }
  
 }
