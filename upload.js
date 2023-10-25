@@ -16,7 +16,7 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params:async(req, file)=>{
 return{
-  folder: 'Mp3',
+  folder: 'Music',
    resource_type: "auto",
      allowedFormat: ["png", "jpeg", "jpg", "svg", "gif", "mp3"],
      path: file.path

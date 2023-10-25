@@ -5,7 +5,6 @@ const createMusic = async(req,res) =>{
     if(req.files){
       const imageUrl = req.files['image'][0].path;
       const mp3Url = req.files['mp3'][0].path;
-      // console.log(imageUrl, mp3Url);
       
       const newUser = {
         songTitle: req.body.songTitle,
@@ -18,7 +17,6 @@ const createMusic = async(req,res) =>{
           instagramHandle: req.body.instagramHandle,
           artistId: req.body.artistId,
         };
-        // console.log(newUser);
         Music.create(newUser)
         .then((response) => {
             res.json({
@@ -71,7 +69,7 @@ const getAllSong = async (req, res)=> {
     const artistId = req.user.id;   
     console.log(artistId);   
     
-      const user = await Music.findOne({artistId});
+      const user = await Music.findAll({where:{artistId}});
       // console.log(user);
   
       if (!user) {
@@ -109,22 +107,18 @@ const delSong = async (req, res) => {
 }
 
 const updateSong = async (req, res)=>{
-
-  const cldRes = await handleUpload(req);    
+  const imageUrl = (req.file.path);
     const songId = req.params.id
-    
     const {songTitle, songDescription, facebookHandle, instagramHandle, websiteUrl, tiktokHandle } = req.body; 
     try {
         const user = await Music.findByPk(songId);
-        // console.log(user);
-    
         if (!user) {
           return res.status(404).json({ error: "Song not found" });
         }
     
         user.songTitle = songTitle;
         if (req.file) {
-          user.imageUrl = cldRes.secure_url;
+          user.imageUrl = imageUrl;
         }
         user.songDescription = songDescription;
         user.websiteUrl = websiteUrl;

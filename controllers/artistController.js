@@ -2,13 +2,11 @@ const Artist = require("../models/artistModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-// const {handleUpload} =require('../upload');
 const Music = require("../models/musicModel");
 dotenv.config();
 
 const createArtist = async (req, res) => {
   const imageUrl = (req.file.path);
-  console.log(imageUrl);
   try {
     const user = await Artist.findOne({ where: { email: req.body.email } })
     if (user) {
@@ -17,7 +15,6 @@ const createArtist = async (req, res) => {
         status: false
       })
     }
-
         const salt = await bcrypt.genSalt(10);
         const art = {
           firstName: req.body.firstName,
@@ -28,7 +25,6 @@ const createArtist = async (req, res) => {
           imageUrl: imageUrl, 
           passWord: await bcrypt.hash(req.body.passWord, salt)
         }
-        console.log(art);
         Artist.create(art)
         .then((response) => {
           res.json({
@@ -124,12 +120,11 @@ const getArtist = async (req, res) => {
 }
 
 const updateProfile = async (req, res) =>{
-    const cldRes = await handleUpload(req);
+  const imageUrl = (req.file.path);
     const userId = req.params.id
     const {firstName, email, state, country, mobile } = req.body; 
     try {
         const user = await Artist.findByPk(userId);
-        // console.log(user);
     
         if (!user) {
           return res.status(404).json({ error: "User not found" });
@@ -141,7 +136,7 @@ const updateProfile = async (req, res) =>{
         user.country = country;
         user.mobile = mobile;
         if (req.file) {
-          user.imageUrl = cldRes.secure_url;
+          user.imageUrl = imageUrl;
         }
 
         await user.save();
