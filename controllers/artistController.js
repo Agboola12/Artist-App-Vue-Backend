@@ -183,4 +183,4 @@ const getBand = async (req, res)=> {
   
   
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBand }
