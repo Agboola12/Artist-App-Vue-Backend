@@ -171,7 +171,7 @@ const getBand = async (req, res)=> {
       res.status(200).json({ status: true, data: user });
   } catch (error) {
     console.error("Error fetching artist band details:", error);
-    res.status(500).json({ status: false, error: "Error fetching user details" });
+    res.status(500).json({ status: false, error: "Error fetching artist band details" });
   }
 }
 
