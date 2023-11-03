@@ -17,6 +17,11 @@ class Artist extends Model{};
         unique: true,
         allowNull: false
     },
+    musicType:{
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+    },
     mobile:{
         type: DataTypes.STRING,
         allowNull: false
