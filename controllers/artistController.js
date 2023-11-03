@@ -2,7 +2,6 @@ const Artist = require("../models/artistModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const Music = require("../models/musicModel");
 dotenv.config();
 
 const createArtist = async (req, res) => {
@@ -19,6 +18,7 @@ const createArtist = async (req, res) => {
         const art = {
           firstName: req.body.firstName,
           email: req.body.email,
+          musicType: req.body.musicType,
           mobile: req.body.mobile,
           state: req.body.state,
           country: req.body.country,
