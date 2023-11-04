@@ -18,6 +18,7 @@ Router.get('/getArtist',verifyToken, getArtist)
 Router.put('/updateProfile/:id', upload.single('image'), updateProfile )
 Router.get('/getAllArtist', getAllArtist)
 Router.get('/getBand', getBand)
+Router.get('/getBand', )
 
 //artist music
 Router.post('/createMusic', upload.fields([{name: 'image'}, {name:'mp3'}]), createMusic)
