@@ -164,7 +164,7 @@ const getBand = async (req, res)=> {
  
   try {
       const user = await Artist.findAll({where:{Band}});
-      console.log(user);
+      // console.log(user);
       if (!user) {
         return res.status(404).json({ status: false, error: "Artist Band not found" });
       }
@@ -175,20 +175,20 @@ const getBand = async (req, res)=> {
   }
 }
 
-// const getDjs = async (req, res)=> {
+const getDjs = async (req, res)=> {
  
-//   try {
-//       const user = await Artist.findAll({where:{djs}});
-//       // console.log(user);
-//       if (!user) {
-//         return res.status(404).json({ status: false, error: "Artist Band not found" });
-//       }
-//       res.status(200).json({ status: true, data: user });
-//   } catch (error) {
-//     console.error("Error fetching artist band details:", error);
-//     res.status(500).json({ status: false, error: "Error fetching artist band details" });
-//   }
-// }
+  try {
+      const user = await Artist.findAll({where:{djs}});
+      // console.log(user);
+      if (!user) {
+        return res.status(404).json({ status: false, error: "Artist Band not found" });
+      }
+      res.status(200).json({ status: true, data: user });
+  } catch (error) {
+    console.error("Error fetching artist band details:", error);
+    res.status(500).json({ status: false, error: "Error fetching artist band details" });
+  }
+}
 
 
 
