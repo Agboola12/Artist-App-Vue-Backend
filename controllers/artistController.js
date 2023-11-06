@@ -219,4 +219,4 @@ const getDjs = async (req, res)=> {
   
   
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBand, getDjs }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBand, getDjs, getMusicArtist }
