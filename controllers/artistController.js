@@ -177,7 +177,7 @@ const getMusicArtist = async (req, res)=> {
   }
   
 }
-const getBand = async (req, res)=> {
+const getBands = async (req, res)=> {
  
   try {
     const user = await Artist.findAll({ where: { musicType: 'Bands' } });
@@ -219,4 +219,4 @@ const getDjs = async (req, res)=> {
   
   
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBand, getDjs, getMusicArtist }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist }

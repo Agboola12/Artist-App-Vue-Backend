@@ -1,6 +1,6 @@
 const express=require("express");
 const { createUser, loginUser, getUser}=require("../controllers/usercontroller");
-const { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBand, getDjs, getMusicArtist } = require("../controllers/artistController");
+const { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist } = require("../controllers/artistController");
 const { verifyToken } = require("../middlewares/authMiddleware");
 const { createMusic, delSong, songDetail, getAllSong, updateSong   } = require("../controllers/musicController");
 const { upload} = require("../upload.js")
@@ -17,7 +17,7 @@ Router.post('/loginArtist', loginArtist)
 Router.get('/getArtist',verifyToken, getArtist)
 Router.put('/updateProfile/:id', upload.single('image'), updateProfile )
 Router.get('/getAllArtist', getAllArtist)
-Router.get('/getBand', getBand)
+Router.get('/getBands', getBands)
 Router.get('/getDjs', getDjs )
 Router.get('/getMusicArtist', getMusicArtist )
 
