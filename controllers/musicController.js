@@ -130,6 +130,22 @@ const updateSong = async (req, res)=>{
         res.status(500).json({ error: "Error updating song details" });
       }
 }
+
+const AllSong = async (req, res)=> {
+ 
+  try {
+   
+      const user = await Music.findAll();
+      // console.log(user);
+      if (!user) {
+        return res.status(404).json({ status: false, error: "Songs not found" });
+      }
+      res.status(200).json({ status: true, data: user });
+  } catch (error) {
+    console.error("Error fetching all song :", error);
+    res.status(500).json({ status: false, error: "Error fetching all song " });
+  }
+} 
   
 
 

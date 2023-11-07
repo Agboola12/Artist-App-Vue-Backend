@@ -28,6 +28,7 @@ Router.get('/getAllSong', verifyToken, getAllSong)
 Router.get('/songDetail/:id', songDetail )
 Router.delete('/delSong/:id', delSong )
 Router.put('/updateSong/:id', upload.single("image"), updateSong )
+Router.get('/AllSong', AllSong)
 
 
 module.exports=Router;
