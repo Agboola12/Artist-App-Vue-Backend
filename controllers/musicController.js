@@ -153,4 +153,4 @@ const AllSong = async (req, res)=> {
 
 
 
-module.exports ={createMusic, getAllSong, delSong, songDetail , updateSong }
+module.exports ={createMusic, getAllSong, delSong, songDetail , updateSong, AllSong  }

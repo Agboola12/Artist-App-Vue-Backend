@@ -2,7 +2,7 @@ const express=require("express");
 const { createUser, loginUser, getUser}=require("../controllers/usercontroller");
 const { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist } = require("../controllers/artistController");
 const { verifyToken } = require("../middlewares/authMiddleware");
-const { createMusic, delSong, songDetail, getAllSong, updateSong   } = require("../controllers/musicController");
+const { createMusic, delSong, songDetail, getAllSong, updateSong, AllSong   } = require("../controllers/musicController");
 const { upload} = require("../upload.js")
 
 const Router=express.Router();
