@@ -16,6 +16,7 @@ const createMusic = async(req,res) =>{
           facebookHandle: req.body.facebookHandle,
           instagramHandle: req.body.instagramHandle,
           artistId: req.body.artistId,
+          artistName: req.body.artistName,
         };
         Music.create(newUser)
         .then((response) => {
