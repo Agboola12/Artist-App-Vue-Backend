@@ -67,9 +67,7 @@ const getAllSong = async (req, res)=> {
  
   try {
     const artistId = req.user.id;   
-    // console.log(artistId);   
       const user = await Music.findAll({where:{artistId}});
-      // console.log(user);
       if (!user) {
         return res.status(404).json({ status: false, error: "User not found" });
       }
@@ -135,7 +133,9 @@ const AllSong = async (req, res)=> {
  
   try {
    
-      const user = await Music.findAll();
+      const user = await Music.findAll({
+        limit:3
+      });
       // console.log(user);
       if (!user) {
         return res.status(404).json({ status: false, error: "Songs not found" });
@@ -146,6 +146,8 @@ const AllSong = async (req, res)=> {
     res.status(500).json({ status: false, error: "Error fetching all song " });
   }
 } 
+
+
   
 
 

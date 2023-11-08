@@ -155,6 +155,18 @@ const getAllArtist = async (req, res) => {
       error: ' error in fecthing all artists '
     })
   }
+
+}
+const popularArtist = async (req, res) => {
+  try {
+    const artists = await Artist.findAll({limit:5});
+    res.json(artists);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      error: ' error in fecthing all artists '
+    })
+  }
 }
 
 const getMusicArtist = async (req, res) => {
@@ -174,6 +186,7 @@ const getMusicArtist = async (req, res) => {
   }
 
 }
+
 const getBands = async (req, res) => {
 
   try {
@@ -209,4 +222,4 @@ const getDjs = async (req, res) => {
 }
 
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist, popularArtist }
