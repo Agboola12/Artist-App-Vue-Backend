@@ -159,7 +159,7 @@ const getAllArtist = async (req, res) => {
 }
 const popularArtist = async (req, res) => {
   try {
-    const artists = await Artist.findAll({limit:5});
+    const artists = await Artist.findAll({limit:6});
     res.json(artists);
   } catch (error) {
     console.log(error);

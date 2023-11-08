@@ -130,12 +130,23 @@ const updateSong = async (req, res)=>{
 }
 
 const AllSong = async (req, res)=> {
- 
   try {
    
-      const user = await Music.findAll({
-        limit:3
-      });
+      const user = await Music.findAll();
+      if (!user) {
+        return res.status(404).json({ status: false, error: "Songs not found" });
+      }
+      res.status(200).json({ status: true, data: user });
+  } catch (error) {
+    console.error("Error fetching all song :", error);
+    res.status(500).json({ status: false, error: "Error fetching all song " });
+  }
+} 
+
+const popularSong = async (req, res)=> {
+  try {
+   
+      const user = await Music.findAll({limit:3});
       // console.log(user);
       if (!user) {
         return res.status(404).json({ status: false, error: "Songs not found" });
@@ -155,4 +166,4 @@ const AllSong = async (req, res)=> {
 
 
 
-module.exports ={createMusic, getAllSong, delSong, songDetail , updateSong, AllSong  }
+module.exports ={createMusic, getAllSong, delSong, songDetail , updateSong, AllSong, popularSong  }
