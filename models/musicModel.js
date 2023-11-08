@@ -37,6 +37,10 @@ class Music extends Model{};
             type: DataTypes.STRING,
             allowNull: false,
         },
+        artistName:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     }, {
         sequelize,
         modelName: 'music',
