@@ -211,13 +211,21 @@ const getDjs = async (req, res) => {
     console.log(user);
 
     if (!user || user.length === 0) {
-      return res.status(404).json({ status: false, error: "Artist Band not found" });
+      return res.status(404).json({ status: false, error: "Dj not found" });
     }
 
     res.status(200).json({ status: true, data: user });
   } catch (error) {
-    console.error("Error fetching artist band details:", error);
-    res.status(500).json({ status: false, error: "Error fetching artist band details" });
+    console.error("Error fetching djs details:", error);
+    res.status(500).json({ status: false, error: "Error fetching djs details" });
+  }
+}
+
+const getArtistDetails = (req,res)=>{
+  try {
+    
+  } catch (error) {
+    
   }
 }
 
