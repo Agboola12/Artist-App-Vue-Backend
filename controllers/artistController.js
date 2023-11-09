@@ -223,9 +223,10 @@ const getDjs = async (req, res) => {
 
 const getArtistDetails = (req,res)=>{
   try {
-    
-  } catch (error) {
-    
+    const user = await Artist.findOne({})
+  } catch (error) { 
+    console.error("Error fetching Artist Details details:", error);
+    res.status(500).json({ status: false, error: "Error in getting Artist Details details" });
   }
 }
 
