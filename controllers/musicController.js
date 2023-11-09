@@ -82,7 +82,7 @@ const getAllSong = async (req, res)=> {
 
 const delSong = async (req, res) => {
     const musicId = req.params.id;
-    console.log(musicId);
+    // console.log(musicId);
   
     try {
       const music = await Music.findByPk(musicId);

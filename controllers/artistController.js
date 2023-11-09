@@ -2,6 +2,7 @@ const Artist = require("../models/artistModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const Music = require("../models/musicModel");
 dotenv.config();
 
 const createArtist = async (req, res) => {
@@ -173,7 +174,7 @@ const getMusicArtist = async (req, res) => {
 
   try {
     const user = await Artist.findAll({ where: { musicType: 'Bands' } });
-    console.log(user);
+    // console.log(user);
 
     if (!user || user.length === 0) {
       return res.status(404).json({ status: false, error: "Artist Band not found" });
@@ -191,7 +192,7 @@ const getBands = async (req, res) => {
 
   try {
     const user = await Artist.findAll({ where: { musicType: 'Bands' } });
-    console.log(user);
+    // console.log(user);
 
     if (!user || user.length === 0) {
       return res.status(404).json({ status: false, error: "Artist Band not found" });
@@ -222,15 +223,21 @@ const getDjs = async (req, res) => {
 }
 
 const getArtistDetails = async (req,res)=>{
-    const artistId = req.params.id;
+    const id = req.params.id;
   try {
-    const user = await Artist.findOne(artistId)
+    const user = await Artist.findByPk(id)
+    const musics = await Music.findAll({where: {artistId: id}})
     console.log(user);
-    if(!user || user.length === 0){
+    if(!user || !musics ){
       return res.status(404).json({ 
         status: false, 
         error: "Artist Details not found" });
     }
+    return res.status(200).json({
+      status: true,
+       user ,
+       musics,
+    })
 
   } catch (error) { 
     console.error("Error fetching Artist Details details:", error);
