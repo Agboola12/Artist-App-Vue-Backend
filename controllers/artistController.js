@@ -224,7 +224,8 @@ const getDjs = async (req, res) => {
 const getArtistDetails = async (req,res)=>{
     const artistId = req.params.id;
   try {
-    const user = await Artist.findByPk(artistId)
+    const user = await Artist.findOne(artistId)
+    console.log(user);
     if(!user || user.length === 0){
       return res.status(404).json({ 
         status: false, 
