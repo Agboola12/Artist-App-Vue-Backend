@@ -22,7 +22,7 @@ Router.get('/popularArtist', popularArtist)
 Router.get('/getBands', getBands)
 Router.get('/getDjs', getDjs )
 Router.get('/getMusicArtist', getMusicArtist )
-Router.delete('/getArtistDetails/:id', getArtistDetails )
+Router.get('/getArtistDetails/:id', getArtistDetails )
 
 //artist music
 Router.post('/createMusic', upload.fields([{name: 'image'}, {name:'mp3'}]), createMusic)

@@ -208,7 +208,7 @@ const getBands = async (req, res) => {
 const getDjs = async (req, res) => {
   try {
     const user = await Artist.findAll({ where: { musicType: 'Djs' } });
-    console.log(user);
+    // console.log(user);
 
     if (!user || user.length === 0) {
       return res.status(404).json({ status: false, error: "Dj not found" });
@@ -222,10 +222,15 @@ const getDjs = async (req, res) => {
 }
 
 const getArtistDetails = async (req,res)=>{
-    const musicId = req.params.id;
-    const artistId = req.params;
+    const artistId = req.params.id;
   try {
-    const user = await Artist.findOne({where: { musicType: 'Djs' }})
+    const user = await Artist.findByPk(artistId)
+    if(!user || user.length === 0){
+      return res.status(404).json({ 
+        status: false, 
+        error: "Artist Details not found" });
+    }
+
   } catch (error) { 
     console.error("Error fetching Artist Details details:", error);
     res.status(500).json({ status: false, error: "Error in getting Artist Details details" });
