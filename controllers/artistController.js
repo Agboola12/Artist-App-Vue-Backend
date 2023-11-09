@@ -221,9 +221,11 @@ const getDjs = async (req, res) => {
   }
 }
 
-const getArtistDetails = (req,res)=>{
+const getArtistDetails = async (req,res)=>{
+    const musicId = req.params.id;
+    const artistId = req.params;
   try {
-    const user = await Artist.findOne({})
+    const user = await Artist.findOne({where: { musicType: 'Djs' }})
   } catch (error) { 
     console.error("Error fetching Artist Details details:", error);
     res.status(500).json({ status: false, error: "Error in getting Artist Details details" });
@@ -231,4 +233,4 @@ const getArtistDetails = (req,res)=>{
 }
 
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist, popularArtist }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist, popularArtist, getArtistDetails }
