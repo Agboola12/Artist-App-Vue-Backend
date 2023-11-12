@@ -160,12 +160,12 @@ const getAllArtist = async (req, res) => {
 }
 const popularArtist = async (req, res) => {
   try {
-    const artists = await Artist.findAll({limit:6});
+    const artists = await Artist.findAll({ limit:6 });
     res.json(artists);
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      error: ' error in fecthing all artists '
+      error: 'error in fecthing all artists'
     })
   }
 }
