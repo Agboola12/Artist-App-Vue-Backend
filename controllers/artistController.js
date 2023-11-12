@@ -77,7 +77,7 @@ const loginArtist = async (req, res) => {
     }
     else {
       return res.status(401).json({
-        message: "Invalid credentials",
+        message: "Invalid information",
         status: false
       });
     }
