@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const createArtist = async (req, res) => {
+const createInfo = async (req, res) => {
     try {
       const info = {
         firstName: req.body.firstName,
@@ -39,3 +39,5 @@ const createArtist = async (req, res) => {
     }
   
   }
+
+  module.exports ={ createInfo}
