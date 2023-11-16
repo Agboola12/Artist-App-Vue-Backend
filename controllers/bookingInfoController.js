@@ -7,12 +7,18 @@ dotenv.config();
 const createInfo = async (req, res) => {
     try {
       const info = {
-        firstName: req.body.firstName,
-        email: req.body.email,
-        musicType: req.body.musicType,
-        mobile: req.body.mobile,
-        state: req.body.state,
+        address: req.body.firstName,
+        artistType: req.body.email,
+        budget: req.body.musicType,
         country: req.body.country,
+        date: req.body.state,
+        event: req.body.mobile,
+        information: req.body.mobile,
+        musicType: req.body.mobile,
+        state: req.body.mobile,
+        time: req.body.mobile,
+        userName: req.body.mobile,
+        userEmail: req.body.mobile,
       }
       BookingInfo.create(info)
         .then((response) => {
