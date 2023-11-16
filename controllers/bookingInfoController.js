@@ -5,7 +5,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const createArtist = async (req, res) => {
-    
+    const imageUrl = (req.file.path);
+    try {
+      
       const salt = await bcrypt.genSalt(10);
       const info = {
         firstName: req.body.firstName,
