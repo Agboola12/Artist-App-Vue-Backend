@@ -1,7 +1,7 @@
 const {DataTypes, Model} = require("sequelize");
 const {sequelize} = require("../connection")
 
-class Artist extends Model{};
+class BookingInfo extends Model{};
  BookingInfo.init({
     id: {
         type: DataTypes.UUID,
@@ -47,6 +47,14 @@ class Artist extends Model{};
         allowNull: false
     },
     time:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    userName:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    userEmail:{
         type: DataTypes.STRING,
         allowNull: false
     },
