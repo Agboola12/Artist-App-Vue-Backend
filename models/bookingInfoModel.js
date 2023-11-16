@@ -8,20 +8,20 @@ class Artist extends Model{};
         primaryKey: true,
         defaultValue: DataTypes.UUIDV1
     },
-    firstName:{
+    address:{
         type: DataTypes.STRING,
         allowNull: false
     },
-    email:{
+    artistType:{
         type: DataTypes.STRING,
         unique: true,
         allowNull: false
     },
-    musicType:{
+    budget:{
         type: DataTypes.STRING,
         allowNull: false
     },
-    mobile:{
+    country:{
         type: DataTypes.STRING,
         allowNull: false
     },
