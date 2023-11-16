@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const createInfo = async (req, res) => {
+const CreateBookInfo = async (req, res) => {
     try {
       const info = {
         address: req.body.address,
@@ -23,13 +23,13 @@ const createInfo = async (req, res) => {
       BookingInfo.create(info)
         .then((response) => {
           res.json({
-            message: "artist created successfully",
+            message: "Booking information created successfully",
             status: true
           })
         })
         .catch((err) => {
           res.status(400).json({
-            message: " error in artist creating ",
+            message: " error in Booking information creating ",
             status: false
           })
           console.log(err);
@@ -38,7 +38,7 @@ const createInfo = async (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).json({
-        message: "Internal server error",
+        message: "Internal server error in Booking information",
         status: false,
         error: error.message,
       })
