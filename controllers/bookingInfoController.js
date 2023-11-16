@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const CreateBookInfo = async (req, res) => {
+const createInfo = async (req, res) => {
     try {
       const info = {
         address: req.body.address,
