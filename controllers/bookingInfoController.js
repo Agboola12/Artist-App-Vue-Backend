@@ -45,7 +45,7 @@ const bookingInfo = async (req, res) => {
     }
   }
 
-  const getBookingInfo = (req, res)=>{
+  const getBookingInfo = async(req, res)=>{
     try {
       const musics = await Music.findAll({where: {artistId: id}})
       console.log(user);
