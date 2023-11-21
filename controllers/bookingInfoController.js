@@ -2,6 +2,7 @@ const BookingInfo = require("../models/bookingInfoModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const Artist = require("../models/artistModel");
 dotenv.config();
 
 const bookingInfo = async (req, res) => {
@@ -47,9 +48,9 @@ const bookingInfo = async (req, res) => {
 
   const getBookingInfo = async(req, res)=>{
     try {
-      const musics = await Music.findAll({where: {artistId: id}})
+      const user = await Artist.findAll({where: {artistId: id}})
       console.log(user);
-      if(!user || !musics ){
+      if(!user  ){
         return res.status(404).json({ 
           status: false, 
           error: "Artist Details not found" });
