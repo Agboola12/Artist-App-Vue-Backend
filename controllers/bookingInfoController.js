@@ -50,7 +50,7 @@ const bookingInfo = async (req, res) => {
     try {
       const user = await Artist.findAll({where: {artistId: id}})
       console.log(user);
-      if(!user  ){
+      if(!user ){
         return res.status(404).json({ 
           status: false, 
           error: "Artist Details not found" });
@@ -58,7 +58,6 @@ const bookingInfo = async (req, res) => {
       return res.status(200).json({
         status: true,
          user ,
-         musics,
       })
   
     } catch (error) { 
