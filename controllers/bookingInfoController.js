@@ -53,7 +53,7 @@ const bookingInfo = async (req, res) => {
       if(!user ){
         return res.status(404).json({ 
           status: false, 
-          error: "Artist Details not found" });
+          error: "Booking Information not found" });
       }
       return res.status(200).json({
         status: true,
@@ -61,8 +61,8 @@ const bookingInfo = async (req, res) => {
       })
   
     } catch (error) { 
-      console.error("Error fetching Artist Details details:", error);
-      res.status(500).json({ status: false, error: "Error in getting Artist Details details" });
+      console.error("Error fetching Booking Information details:", error);
+      res.status(500).json({ status: false, error: "Error in getting Booking Information details" });
     }
   }
 
