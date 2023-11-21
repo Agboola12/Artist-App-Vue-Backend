@@ -43,7 +43,10 @@ const bookingInfo = async (req, res) => {
         error: error.message,
       })
     }
-  
   }
 
-  module.exports ={ bookingInfo}
+  const getBookingInfo = (req, res)=>{
+
+  }
+
+  module.exports ={ bookingInfo, }
