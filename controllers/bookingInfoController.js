@@ -46,7 +46,26 @@ const bookingInfo = async (req, res) => {
   }
 
   const getBookingInfo = (req, res)=>{
-
+    const id = req.params.id;
+    try {
+      const user = await Artist.findByPk(id)
+      const musics = await Music.findAll({where: {artistId: id}})
+      console.log(user);
+      if(!user || !musics ){
+        return res.status(404).json({ 
+          status: false, 
+          error: "Artist Details not found" });
+      }
+      return res.status(200).json({
+        status: true,
+         user ,
+         musics,
+      })
+  
+    } catch (error) { 
+      console.error("Error fetching Artist Details details:", error);
+      res.status(500).json({ status: false, error: "Error in getting Artist Details details" });
+    }
   }
 
-  module.exports ={ bookingInfo, }
+  module.exports ={ bookingInfo, getBookingInfo}
