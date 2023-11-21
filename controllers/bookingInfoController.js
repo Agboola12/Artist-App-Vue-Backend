@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const createInfo = async (req, res) => {
+const bookingInfo = async (req, res) => {
     try {
       const info = {
         address: req.body.address,
@@ -46,4 +46,4 @@ const createInfo = async (req, res) => {
   
   }
 
-  module.exports ={ createInfo}
+  module.exports ={ bookingInfo}
