@@ -48,24 +48,29 @@ const bookingInfo = async (req, res) => {
   }
 
   const getBookingInfo = async(req, res)=>{
-    const {artistType, country, musicType, state} = req.body;
-    try {
-      const user = await Artist.findAll({where: {[Op.or]:{artistType, country, musicType, state}} })
-      console.log(user);
-      if(!user ){
-        return res.status(404).json({ 
-          status: false, 
-          error: "Booking Information not found" });
-      }
-      return res.status(200).json({
-        status: true,
-         user ,
-      })
-  
-    } catch (error) { 
-      console.error("Error fetching Booking Information details:", error);
-      res.status(500).json({ status: false, error: "Error in getting Booking Information details" });
-    }
+    console.log(req.body);
+    // const {artistType, country, musicType, state} = req.body;
+    // try {
+    //   const user = await Artist.findAll({where: {[Op.or]:{artistType, country, musicType, state}} })
+    //   console.log(user);
+
+    //   if(!user ){
+    //     return res.status(404).json({ 
+    //       status: false, 
+    //       error: "Booking Information not found" });
+    //   }
+    //   return res.status(200).json({
+    //     status: true,
+    //      user ,
+    //   })
+    // } 
+    // catch (error) { 
+    //   console.error("Error fetching Booking Information",
+    //   error);
+    //   res.status(500).json({ 
+    //     status: false, 
+    //     error: "Error in getting Booking Information details" });
+    // }
   }
 
   module.exports ={ bookingInfo, getBookingInfo}
