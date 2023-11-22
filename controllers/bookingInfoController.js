@@ -49,8 +49,9 @@ const bookingInfo = async (req, res) => {
   const getBookingInfo = async(req, res)=>{
     try {
       const artist = await Artist.findAll({where: {artistType}})
-      const user = await Artist.findAll({where: {artistType}})
-      const user = await Artist.findAll({where: {artistType}})
+      const location = await Artist.findAll({where: {country}})
+      const song = await Artist.findAll({where: {musicType}})
+      const address = await Artist.findAll({where: {state}})
       console.log(user);
       if(!user ){
         return res.status(404).json({ 
