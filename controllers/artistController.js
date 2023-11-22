@@ -21,6 +21,7 @@ const createArtist = async (req, res) => {
       email: req.body.email,
       musicType: req.body.musicType,
       mobile: req.body.mobile,
+      musicType: req.body.musicType,
       state: req.body.state,
       country: req.body.country,
       imageUrl: imageUrl,

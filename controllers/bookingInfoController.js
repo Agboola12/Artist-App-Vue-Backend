@@ -48,7 +48,6 @@ const bookingInfo = async (req, res) => {
   }
 
   const getBookingInfo = async(req, res)=>{
-    // console.log(req.body);
     const {artistType, country, musicType, state} = req.body;
     try {
       const user = await Artist.findAll({where: {[Op.or]:{artistType, country, musicType, state}} })
