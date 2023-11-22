@@ -36,7 +36,7 @@ Router.get('/popularSong', popularSong)
 
 // creating booking information
 // Router.post('/bookingInfo', bookingInfo)
-Router.get('/getBookingInfo', getBookingInfo)
+Router.get('/getBookingInfo/:bookingInfo', getBookingInfo)
 
 
 module.exports=Router;
