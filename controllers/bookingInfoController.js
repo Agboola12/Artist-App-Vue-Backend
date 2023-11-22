@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const Artist = require("../models/artistModel");
+const {Op} = require ("sequelize")
 dotenv.config();
 
 const bookingInfo = async (req, res) => {
@@ -47,11 +48,12 @@ const bookingInfo = async (req, res) => {
   }
 
   const getBookingInfo = async(req, res)=>{
+    const {artistType, country, musicType, state} = req.body;
     try {
-      const artist = await Artist.findAll({where: {artistType}})
-      const location = await Artist.findAll({where: {country}})
-      const song = await Artist.findAll({where: {musicType}})
-      const address = await Artist.findAll({where: {state}})
+      const artist = await Artist.findAll({where: {[Op.or]:{artistType, country, musicType, state}} })
+      // const location = await Artist.findAll({where: {country}})
+      // const song = await Artist.findAll({where: {musicType}})
+      // const address = await Artist.findAll({where: {state}})
       console.log(user);
       if(!user ){
         return res.status(404).json({ 
