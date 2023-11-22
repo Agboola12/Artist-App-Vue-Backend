@@ -35,7 +35,7 @@ Router.get('/AllSong', AllSong)
 Router.get('/popularSong', popularSong)
 
 // creating booking information
-Router.post('/bookingInfo', bookingInfo)
+// Router.post('/bookingInfo', bookingInfo)
 Router.get('/getBookingInfo', getBookingInfo)
 
 
