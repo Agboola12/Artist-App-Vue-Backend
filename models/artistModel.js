@@ -17,11 +17,15 @@ class Artist extends Model{};
         unique: true,
         allowNull: false
     },
-    musicType:{
+    artistType:{
         type: DataTypes.STRING,
         allowNull: false
     },
     mobile:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    musicType:{
         type: DataTypes.STRING,
         allowNull: false
     },
