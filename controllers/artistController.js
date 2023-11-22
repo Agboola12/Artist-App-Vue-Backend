@@ -19,7 +19,7 @@ const createArtist = async (req, res) => {
     const art = {
       firstName: req.body.firstName,
       email: req.body.email,
-      musicType: req.body.musicType,
+      artistType: req.body.artistType,
       mobile: req.body.mobile,
       musicType: req.body.musicType,
       state: req.body.state,
