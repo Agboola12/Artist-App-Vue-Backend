@@ -8,45 +8,45 @@ dotenv.config();
 
 const bookingInfo = async (req, res) => {
   console.log(req.body);
-    // try {
-    //   const info = {
-    //     address: req.body.address,
-    //     artistType: req.body.artistType,
-    //     budget: req.body.budget,
-    //     country: req.body.country,
-    //     date: req.body.date,
-    //     event: req.body.event,
-    //     information: req.body.information,
-    //     musicType: req.body.musicType,
-    //     state: req.body.state,
-    //     time: req.body.time,
-    //     userName: req.body.userName,
-    //     userEmail: req.body.userEmail,
-    //     musicId: req.body.musicId,
-    //   }
-    //   BookingInfo.create(info)
-    //     .then((response) => {
-    //       res.json({
-    //         message: "Booking information created successfully",
-    //         status: true
-    //       })
-    //     })
-    //     .catch((err) => {
-    //       res.status(400).json({
-    //         message: " error in Booking information creating ",
-    //         status: false
-    //       })
-    //       console.log(err);
-    //     })
+    try {
+      const info = {
+        address: req.body.address,
+        artistType: req.body.artistType,
+        budget: req.body.budget,
+        country: req.body.country,
+        date: req.body.date,
+        event: req.body.event,
+        information: req.body.information,
+        musicType: req.body.musicType,
+        state: req.body.state,
+        time: req.body.time,
+        userName: req.body.userName,
+        userEmail: req.body.userEmail,
+        musicId: req.body.musicId,
+      }
+      BookingInfo.create(info)
+        .then((response) => {
+          res.json({
+            message: "Booking information created successfully",
+            status: true
+          })
+        })
+        .catch((err) => {
+          res.status(400).json({
+            message: " error in Booking information creating ",
+            status: false
+          })
+          console.log(err);
+        })
   
-    // } catch (error) {
-    //   console.error(error);
-    //   res.status(500).json({
-    //     message: "Internal server error in Booking information",
-    //     status: false,
-    //     error: error.message,
-    //   })
-    // }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Internal server error in Booking information",
+        status: false,
+        error: error.message,
+      })
+    }
   }
 
   const getBookingInfo = async(req, res)=>{
