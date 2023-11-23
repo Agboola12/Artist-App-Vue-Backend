@@ -62,6 +62,10 @@ class BookingInfo extends Model{};
         type: DataTypes.STRING,
         allowNull: false
     },
+    artistName:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 
  },{
         sequelize,

@@ -23,7 +23,7 @@ const bookingInfo = async (req, res) => {
         userName: req.body.userName,
         userEmail: req.body.userEmail,
         musicId: req.body.musicId,
-        musicId: req.body.artistName,
+        artistName: req.body.artistName,
       }
       BookingInfo.create(info)
         .then((response) => {
