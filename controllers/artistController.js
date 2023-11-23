@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const Music = require("../models/musicModel");
 const BookingInfo = require("../models/bookingInfoModel");
+const {Op} = require ("sequelize")
 dotenv.config();
 
 const createArtist = async (req, res) => {
@@ -248,21 +249,20 @@ const getArtistDetails = async (req,res)=>{
 }
 
 const artistNotice = async (req, res) => {
-    const id = req.params.id;
-  console.log(id);
-  // try {
-  //   const user = await BookingInfo.findAll({where: {[Op.or]:{ state: false ,  musicId: musicId }} })
-  //   console.log(user);
+    const musicId = req.params.id;
+  try {
+    const user = await BookingInfo.findAll({where: {[Op.or]:{ state: false ,  musicId: musicId }} })
+    console.log(user);
 
-  //   if (!user  ) {
-  //     return res.status(404).json({ status: false, error: "artist bookingnot found" });
-  //   }
+    if (!user  ) {
+      return res.status(404).json({ status: false, error: "artist bookingnot found" });
+    }
 
-  //   res.status(200).json({ status: true, data: user });
-  // } catch (error) {
-  //   console.error("Error fetching artist booking:", error);
-  //   res.status(500).json({ status: false, error: "Error fetching artist booking details" });
-  // }
+    res.status(200).json({ status: true, data: user });
+  } catch (error) {
+    console.error("Error fetching artist booking:", error);
+    res.status(500).json({ status: false, error: "Error fetching artist booking details" });
+  }
 }
 
 

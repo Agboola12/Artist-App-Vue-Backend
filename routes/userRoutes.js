@@ -25,7 +25,7 @@ Router.get('/getBands', getBands)
 Router.get('/getDjs', getDjs )
 Router.get('/getMusicArtist', getMusicArtist )
 Router.get('/getArtistDetails/:id', getArtistDetails )
-Router.get('/artistNotice',  artistNotice )
+Router.get('/artistNotice/:id',  artistNotice )
 
 //artist music
 Router.post('/createMusic', upload.fields([{name: 'image'}, {name:'mp3'}]), createMusic)
