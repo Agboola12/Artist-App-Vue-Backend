@@ -58,6 +58,10 @@ class BookingInfo extends Model{};
         type: DataTypes.STRING,
         allowNull: false
     },
+    musicId:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 
  },{
         sequelize,
