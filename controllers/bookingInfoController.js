@@ -23,12 +23,14 @@ const bookingInfo = async (req, res) => {
         userName: req.body.userName,
         userEmail: req.body.userEmail,
         musicId: req.body.musicId,
+        musicId: req.body.artistName,
       }
       BookingInfo.create(info)
         .then((response) => {
           res.json({
             message: "Booking information created successfully",
-            status: true
+            status: true,
+            response
           })
         })
         .catch((err) => {
