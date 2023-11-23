@@ -7,6 +7,7 @@ const {Op} = require ("sequelize")
 dotenv.config();
 
 const bookingInfo = async (req, res) => {
+  console.log(req.body);
     try {
       const info = {
         address: req.body.address,
