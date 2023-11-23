@@ -66,6 +66,10 @@ class BookingInfo extends Model{};
         type: DataTypes.STRING,
         allowNull: false
     },
+    state:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    }
 
  },{
         sequelize,
