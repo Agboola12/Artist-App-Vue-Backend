@@ -76,4 +76,23 @@ const bookingInfo = async (req, res) => {
     }
   }
 
-  module.exports ={ bookingInfo, getBookingInfo}
+  const infoDetail =async (req, res) => {
+    const infoId = req.params.id;
+    // console.log(musicId);
+
+    try {
+        const user = await BookingInfo.findByPk(infoId);
+        // console.log(user);
+
+        if (!user) {
+          return res.status(404).json({ error: "User not found" });
+        }
+    
+        res.status(200).json(user);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error fetching user details" });
+      }
+}
+
+  module.exports ={ bookingInfo, getBookingInfo, infoDetail}
