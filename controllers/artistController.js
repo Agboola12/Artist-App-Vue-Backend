@@ -250,7 +250,7 @@ const getArtistDetails = async (req,res)=>{
 
 const artistNotice = async (req, res) => {
     const musicId = req.params.id;
-    console.log(musicId);
+    // console.log(musicId);
   try {
     const user = await BookingInfo.findAll({where: {[Op.and]:{ state: false ,  musicId: musicId }} })
     // console.log(user);
