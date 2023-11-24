@@ -14,7 +14,6 @@ class BookingInfo extends Model{};
     },
     artistType:{
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false
     },
     budget:{
@@ -31,7 +30,6 @@ class BookingInfo extends Model{};
     },
     event:{
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false
     },
     information:{

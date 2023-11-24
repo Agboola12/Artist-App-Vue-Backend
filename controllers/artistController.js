@@ -230,7 +230,7 @@ const getArtistDetails = async (req,res)=>{
   try {
     const user = await Artist.findByPk(id)
     const musics = await Music.findAll({where: {artistId: id}})
-    console.log(user);
+    // console.log(user);
     if(!user || !musics ){
       return res.status(404).json({ 
         status: false, 
@@ -252,7 +252,7 @@ const artistNotice = async (req, res) => {
     const musicId = req.params.id;
   try {
     const user = await BookingInfo.findAll({where: {[Op.or]:{ state: false ,  musicId: musicId }} })
-    console.log(user);
+    // console.log(user);
 
     if (!user  ) {
       return res.status(404).json({ status: false, error: "artist bookingnot found" });
