@@ -259,7 +259,10 @@ const artistNotice = async (req, res) => {
       return res.status(404).json({ status: false, error: "artist bookingnot found" });
     }
 
-    res.status(200).json({ status: true, data: user });
+    res.status(200).json({ 
+       status: true, 
+       user
+      });
   } catch (error) {
     console.error("Error fetching artist booking:", error);
     res.status(500).json({ status: false, error: "Error fetching artist booking details" });
