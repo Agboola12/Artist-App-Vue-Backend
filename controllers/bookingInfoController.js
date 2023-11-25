@@ -94,12 +94,12 @@ const bookingInfo = async (req, res) => {
         res.status(500).json({ error: "Error fetching user details" });
       }
 }
-  const infoDetail =async (req, res) => {
-    const infoId = req.params.id;
-    // console.log(musicId);
+  
+const Approve =async (req, res) => {
+    const id = req.params.id;
 
     try {
-        const user = await BookingInfo.findByPk(infoId);
+        const user = await BookingInfo.findByPk(id);
         // console.log(user);
 
         if (!user) {
