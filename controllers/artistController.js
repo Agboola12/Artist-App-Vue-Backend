@@ -250,7 +250,6 @@ const getArtistDetails = async (req,res)=>{
 
 const artistNotice = async (req, res) => {
     const musicId = req.params.id;
-    // console.log(musicId);
   try {
     const user = await BookingInfo.findAll({where: {[Op.and]:{ state: false ,  musicId: musicId }} })
     // console.log(user);
@@ -269,5 +268,25 @@ const artistNotice = async (req, res) => {
   }
 }
 
+const artistAppointment = async (req, res) => {
+    const musicId = req.params.id;
+  try {
+    const user = await BookingInfo.findAll({where: {[Op.and]:{ state: true ,  musicId: musicId }} })
+    // console.log(user);
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, artistNotice,getDjs, getMusicArtist, popularArtist, getArtistDetails }
+    if (!user  ) {
+      return res.status(404).json({ status: false, error: "artist booking not found" });
+    }
+
+    res.status(200).json({ 
+       status: true, 
+       user
+      });
+  } catch (error) {
+    console.error("Error fetching artist booking:", error);
+    res.status(500).json({ status: false, error: "Error fetching artist booking details" });
+  }
+}
+
+
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, artistAppointment , getBands, artistNotice,getDjs, getMusicArtist, popularArtist, getArtistDetails }
