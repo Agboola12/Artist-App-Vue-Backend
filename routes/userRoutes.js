@@ -40,6 +40,7 @@ Router.get('/popularSong', popularSong)
 Router.post('/bookingInfo', bookingInfo)
 Router.post('/getBookingInfo', getBookingInfo)
 Router.get('/infoDetails/:id', infoDetail)
+Router.get('/Approve/:id', infoDetail)
 
 
 module.exports=Router;
