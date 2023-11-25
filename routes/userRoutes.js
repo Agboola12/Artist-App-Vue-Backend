@@ -5,7 +5,7 @@ const { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBa
 const { verifyToken } = require("../middlewares/authMiddleware");
 const { createMusic, delSong, songDetail, getAllSong, updateSong, AllSong, popularSong   } = require("../controllers/musicController");
 const { upload} = require("../upload.js");
-const { bookingInfo, getBookingInfo, infoDetail } = require("../controllers/bookingInfoController.js");
+const { bookingInfo, getBookingInfo, infoDetail, Approve } = require("../controllers/bookingInfoController.js");
 
 const Router=express.Router();
 
@@ -40,7 +40,7 @@ Router.get('/popularSong', popularSong)
 Router.post('/bookingInfo', bookingInfo)
 Router.post('/getBookingInfo', getBookingInfo)
 Router.get('/infoDetails/:id', infoDetail)
-Router.get('/Approve/:id', infoDetail)
+Router.get('/Approve/:id', Approve)
 
 
 module.exports=Router;

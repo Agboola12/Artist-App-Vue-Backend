@@ -99,12 +99,13 @@ const Approve =async (req, res) => {
     const id = req.params.id;
 
     try {
-        const user = await BookingInfo.findByPk(id);
+        const user = await BookingInfo.findOne({where: {id} });
         // console.log(user);
 
         if (!user) {
           return res.status(404).json({ error: "User not found" });
         }
+        
     
         res.status(200).json(user);
       } catch (error) {
@@ -113,4 +114,4 @@ const Approve =async (req, res) => {
       }
 }
 
-  module.exports ={ bookingInfo, getBookingInfo, infoDetail}
+  module.exports ={ bookingInfo, getBookingInfo, infoDetail, Approve}
