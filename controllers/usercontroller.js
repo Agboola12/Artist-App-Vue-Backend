@@ -2,9 +2,17 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const { sendMail } = require("../mail");
+const nodemailer = require('nodemailer');
 
 dotenv.config();
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'your-email@gmail.com',
+      pass: 'your-email-password',
+    },
+  });
 
 const createUser = async (req, res) => {
     const user = await User.findOne({ where: { email: req.body.email } })
