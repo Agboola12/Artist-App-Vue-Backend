@@ -9,8 +9,8 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'your-email@gmail.com',
-      pass: 'your-email-password',
+      user: 'elijahiyanuoluwa12@gmail.com',
+      pass: '08060360214',
     },
   });
 
@@ -30,23 +30,24 @@ const createUser = async (req, res) => {
     };
     await User.create(usr)
             await transporter.sendMail({
-            from: 'your-email@gmail.com',
-            to: email,
+            from: 'elijahiyanuoluwa12@gmail.com',
+            to: req.body.email,
             subject: 'Form Submission Confirmation',
-            text: `Thank you for submitting the form, ${firstName}!`,
+            text: `Thank you for submitting the form, ${req.body.firstName}!`,
          });
         // .then((result) => {
-        //     res.json({
-        //         message: "created successfully",
-        //         status: true
-        //     })
+            res.json({
+                message: "User account created successfully",
+                status: true
+            })
         // })
         
         .catch((error) => {
             res.json({
-                message: "failed to created user",
+                message: "Failed to created user",
                 status: false
             })
+            console.log(error);
         })
     
 
