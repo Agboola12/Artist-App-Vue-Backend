@@ -33,12 +33,6 @@ const createUser = async (req, res) => {
     //         })
     //     })
     User.create({usr}, 
-        async (err, message) =>{
-        if (err){
-            res.status(400).json({
-                success: false,
-                message : "An error in creating an account"
-            })
     
 
 }
