@@ -14,44 +14,81 @@ const transporter = nodemailer.createTransport({
     },
   });
 
+// const createUser = async (req, res) => {
+//     const user = await User.findOne({ where: { email: req.body.email } })
+//     if (user) {
+//         return res.status(200).json({
+//             message: "email already exist",
+//             status: false
+//         })
+//     }
+//     const salt = await bcrypt.genSalt(10);
+//     var usr = {
+//         firstName: req.body.firstName,
+//         email: req.body.email,
+//         passWord: await bcrypt.hash(req.body.passWord, salt)
+//     };
+//     await User.create(usr)
+//             await transporter.sendMail({
+//             from: 'elijahiyanuoluwa12@gmail.com',
+//             to: req.body.email,
+//             subject: 'Form Submission Confirmation',
+//             text: `Thank you for submitting the form, ${req.body.firstName}!`,
+//          });
+        
+//             res.json({
+//                 message: "User account created successfully",
+//                 status: true
+//             })        
+//         .catch((error) => {
+//             res.json({
+//                 message: "Failed to created user",
+//                 status: false
+//             })
+//             console.log(error);
+//         })
+// }
+
 const createUser = async (req, res) => {
-    const user = await User.findOne({ where: { email: req.body.email } })
-    if (user) {
-        return res.status(200).json({
-            message: "email already exist",
-            status: false
-        })
-    }
-    const salt = await bcrypt.genSalt(10);
-    var usr = {
-        firstName: req.body.firstName,
-        email: req.body.email,
-        passWord: await bcrypt.hash(req.body.passWord, salt)
-    };
-    await User.create(usr)
-            await transporter.sendMail({
+    try {
+        const user = await User.findOne({ where: { email: req.body.email } });
+
+        if (user) {
+            return res.status(200).json({
+                message: "Email already exists",
+                status: false
+            });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.passWord, salt);
+
+        await User.create({
+            firstName: req.body.firstName,
+            email: req.body.email,
+            passWord: hashedPassword
+        });
+
+        await transporter.sendMail({
             from: 'elijahiyanuoluwa12@gmail.com',
             to: req.body.email,
             subject: 'Form Submission Confirmation',
             text: `Thank you for submitting the form, ${req.body.firstName}!`,
-         });
-        // .then((result) => {
-            res.json({
-                message: "User account created successfully",
-                status: true
-            })
-        // })
-        
-        .catch((error) => {
-            res.json({
-                message: "Failed to created user",
-                status: false
-            })
-            console.log(error);
-        })
-    
+        });
 
+        res.json({
+            message: "User account created successfully",
+            status: true
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Failed to create user",
+            status: false
+        });
+    }
 }
+
 
 const loginUser = async(req, res)=>{
     const { email, passWord } = req.body;
