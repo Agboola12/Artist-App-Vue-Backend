@@ -39,27 +39,7 @@ const createUser = async (req, res) => {
                 success: false,
                 message : "An error in creating an account"
             })
-            console.log(err);
-        }else{
-        try {
-           await sendMail({
-            to: email,
-            subject: "succesful",
-            html:`
-                <div>
-                    <h3>welcome ${firstName} to prime website</h3>
-                </div>
-            `
-           })
-        } catch (error) {
-            log.console("An error occureed while sending mail")
-        }
-            res.json({
-                success: true,
-                message: "User registration successful",
-            })
-        }
-    })
+    
 
 }
 
