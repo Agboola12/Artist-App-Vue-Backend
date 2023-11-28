@@ -3,16 +3,21 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const nodemailer = require('nodemailer');
+const { sendMail } = require("../mail");
 
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'elijahiyanuoluwa12@gmail.com',
-      pass: '08060360214',
-    },
-  });
+        user: process.env.APP_MAIL,
+        pass: process.env.APP_PASSWORD
+    }
+    // auth: {
+    //   user: 'agboolaelijah077@gmail.com',
+    //   pass: '08060360214',
+    // },
+//   });
 
 // const createUser = async (req, res) => {
 //     const user = await User.findOne({ where: { email: req.body.email } })
@@ -69,8 +74,8 @@ const createUser = async (req, res) => {
             passWord: hashedPassword
         });
 
-        await transporter.sendMail({
-            from: 'elijahiyanuoluwa12@gmail.com',
+        await sendMail({
+            from: process.env.APP_MAIL,
             to: req.body.email,
             subject: 'Form Submission Confirmation',
             text: `Thank you for submitting the form, ${req.body.firstName}!`,
