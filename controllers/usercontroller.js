@@ -29,12 +29,20 @@ const createUser = async (req, res) => {
         passWord: await bcrypt.hash(req.body.passWord, salt)
     };
     await User.create(usr)
-        .then((result) => {
-            res.json({
-                message: "created successfully",
-                status: true
-            })
-        }).catch((error) => {
+            await transporter.sendMail({
+            from: 'your-email@gmail.com',
+            to: email,
+            subject: 'Form Submission Confirmation',
+            text: `Thank you for submitting the form, ${firstName}!`,
+         });
+        // .then((result) => {
+        //     res.json({
+        //         message: "created successfully",
+        //         status: true
+        //     })
+        // })
+        
+        .catch((error) => {
             res.json({
                 message: "failed to created user",
                 status: false
