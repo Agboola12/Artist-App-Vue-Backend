@@ -20,18 +20,18 @@ const createUser = async (req, res) => {
         email: req.body.email,
         passWord: await bcrypt.hash(req.body.passWord, salt)
     };
-    // await User.create(usr)
-    //     .then((result) => {
-    //         res.json({
-    //             message: "created successfully",
-    //             status: true
-    //         })
-    //     }).catch((error) => {
-    //         res.json({
-    //             message: "failed to created user",
-    //             status: false
-    //         })
-    //     })
+    await User.create(usr)
+        .then((result) => {
+            res.json({
+                message: "created successfully",
+                status: true
+            })
+        }).catch((error) => {
+            res.json({
+                message: "failed to created user",
+                status: false
+            })
+        })
     
 
 }
