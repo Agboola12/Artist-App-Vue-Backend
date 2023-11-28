@@ -32,7 +32,6 @@ const createUser = async (req, res) => {
     //             status: false
     //         })
     //     })
-    User.create({usr}, 
     
 
 }
