@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { sendMail } = require("../mail");
 
 dotenv.config();
 
@@ -19,18 +20,46 @@ const createUser = async (req, res) => {
         email: req.body.email,
         passWord: await bcrypt.hash(req.body.passWord, salt)
     };
-    User.create(usr)
-        .then((_result) => {
-            res.json({
-                message: "created successfully",
-                status: true
-            })
-        }).catch((_error) => {
-            res.json({
-                message: "failed to created user",
-                status: false
-            })
-        })
+    // await User.create(usr)
+    //     .then((result) => {
+    //         res.json({
+    //             message: "created successfully",
+    //             status: true
+    //         })
+    //     }).catch((error) => {
+    //         res.json({
+    //             message: "failed to created user",
+    //             status: false
+    //         })
+    //     })
+    // User.create({usr}, 
+    //     async (err, message) =>{
+    //     if (err){
+    //         res.status(400).json({
+    //             success: false,
+    //             message : "An error in creating an account"
+    //         })
+    //         console.log(err);
+    //     }else{
+    //     try {
+    //        await sendMail({
+    //         to: email,
+    //         subject: "succesful",
+    //         html:`
+    //             <div>
+    //                 <h3>welcome ${firstName} to prime website</h3>
+    //             </div>
+    //         `
+    //        })
+    //     } catch (error) {
+    //         log.console("An error occureed while sending mail")
+    //     }
+    //         res.json({
+    //             success: true,
+    //             message: "User registration successful",
+    //         })
+    //     }
+    // })
 
 }
 
