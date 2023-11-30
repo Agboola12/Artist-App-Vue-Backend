@@ -28,6 +28,8 @@ const createUser = async (req, res) => {
         email: req.body.email,
         passWord: await bcrypt.hash(req.body.passWord, salt)
     };
+
+    // joi yup validator in the backend
     await User.create(usr)
             await transporter.sendMail({
             from: 'process.env.APP_MAIL',
@@ -42,13 +44,13 @@ const createUser = async (req, res) => {
          })
              
          .then((resp)=>{
-             res.json({
+             res.status(200).json({
                  message: "User account created successfully",
                  status: true
                 })        
             })
         .catch((error) => {
-            res.json({
+            res.status(200).json({
                 message: "Failed to created user",
                 status: false
             })
