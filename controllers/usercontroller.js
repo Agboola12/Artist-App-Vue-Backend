@@ -77,9 +77,9 @@ const createUser = async (req, res) => {
 
         await sendMail({
             from: process.env.APP_MAIL,
-            to: email,
+            to: req.body.email,
             subject: ' Prime',
-            text: `Welcome to our website. Enjoy your stay with us ${firstName}`
+            text: `Welcome to our website. Enjoy your stay with us ${req.body.firstName}`
         //     from: process.env.APP_MAIL,
         //     to: req.body.email,
         //     subject: 'Form Submission Confirmation',

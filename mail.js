@@ -35,14 +35,14 @@ const sendMail =()=>{
     }
 });
 
-var mailOptions = {
-  from: process.env.APP_MAIL,
-  to: 'teslimagboola09@gmail.com',
-  subject: ' Prime',
-  text: 'Welcome to our website. Enjoy your stay with us'
-};
+// var mailOptions = {
+//   from: process.env.APP_MAIL,
+//   to: 'teslimagboola09@gmail.com',
+//   subject: ' Prime',
+//   text: 'Welcome to our website. Enjoy your stay with us'
+// };
 
-transporter.sendMail(mailOptions, function(error, info){
+transporter.sendMail( function(error, info){
   if (error) {
     console.log(error);
   } else {
