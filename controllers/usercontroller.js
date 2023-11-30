@@ -43,7 +43,7 @@ const createUser = async (req, res) => {
                   text: 
                         `<div>
                             <p>Welcome to our website. Enjoy your stay with us</p>
-                            <h3>{}</h3>
+                            <h3>${req.body.firstName}</h3>
                         </div>`
                 }
             transporter.sendMail(mail, function(error, info){
