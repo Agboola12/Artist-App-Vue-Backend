@@ -1,25 +1,18 @@
-// const { createTransport } = require("nodemailer")
+const { createTransport } = require("nodemailer")
 
-// const sendMail = async({to, subject, text, html})=>{
-//     const transporter = createTransport({
-            // service: 'gmail',
-            // auth: {
-                //   user: process.env.APP_MAIL,
-                //   pass: process.env.APP_PASSWORD
-    //   }
-        // )}
-//         
-    
-//     const info = await transporter.sendMail({
-//         from: process.env.APP_MAIL,
-//         to,
-//         subject,
-//         text, 
-//         html
-//     })
+const sendMail = async({to, subject, text, html})=>{
+    const transporter = createTransport({
+            service: 'gmail',
+            auth: {
+                  user: process.env.APP_MAIL,
+                  pass: process.env.APP_PASSWORD
+                 }
+            })
+                }
+            
 
-// }
-// module.exports =  {sendMail}
+
+module.exports =  {sendMail}
 
 // var nodemailer = require('nodemailer');
 
