@@ -33,7 +33,7 @@ const createUser = async (req, res) => {
             await transporter.sendMail({
             from: 'process.env.APP_MAIL',
             to: req.body.email,
-            subject: 'Form Submission Confirmation',
+            subject: 'Prime',
             text: `Thank you for submitting the form, ${req.body.firstName}!`,
          });
         
