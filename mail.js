@@ -2,15 +2,13 @@
 
 // const sendMail = async({to, subject, text, html})=>{
 //     const transporter = createTransport({
-//         host : "smtp.gmail.com",
-//         secure: true,
-//         service: 'gmail.com',
-//         port: 587,
-//         auth: {
-//             user: process.env.APP_MAIL,
-//             pass: process.env.APP_PASSWORD
-//         }
-//     })
+            // service: 'gmail',
+            // auth: {
+                //   user: process.env.APP_MAIL,
+                //   pass: process.env.APP_PASSWORD
+    //   }
+        // )}
+//         
     
 //     const info = await transporter.sendMail({
 //         from: process.env.APP_MAIL,
@@ -23,17 +21,17 @@
 // }
 // module.exports =  {sendMail}
 
-var nodemailer = require('nodemailer');
+// var nodemailer = require('nodemailer');
 
-const sendMail =()=>{
+// const sendMail =()=>{
     
-    var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-        user: process.env.APP_MAIL,
-        pass: process.env.APP_PASSWORD
-    }
-});
+//     var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//         user: process.env.APP_MAIL,
+//         pass: process.env.APP_PASSWORD
+//     }
+// });
 
 // var mailOptions = {
 //   from: process.env.APP_MAIL,
@@ -42,13 +40,13 @@ const sendMail =()=>{
 //   text: 'Welcome to our website. Enjoy your stay with us'
 // };
 
-transporter.sendMail( function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+// transporter.sendMail( function(error, info){
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// });
 
-}
-module.exports = {sendMail}
+// }
+// module.exports = {sendMail}

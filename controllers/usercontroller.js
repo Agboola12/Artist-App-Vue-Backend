@@ -80,10 +80,6 @@ const createUser = async (req, res) => {
             to: req.body.email,
             subject: ' Prime',
             text: `Welcome to our website. Enjoy your stay with us ${req.body.firstName}`
-        //     from: process.env.APP_MAIL,
-        //     to: req.body.email,
-        //     subject: 'Form Submission Confirmation',
-        //     text: `Thank you for submitting the form, ${req.body.firstName}!`,
         });
 
         res.json({
