@@ -121,8 +121,8 @@ const loginUser = async(req, res)=>{
         });
       } 
       else {
-        return res.status(401).json({ 
-            message: "Invalid details", 
+        return res.status(200).json({ 
+            message: "Email or Password is not correct", 
             status: false 
         });
       }
