@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 // const { sendMail } = require("../mail");
 const nodemailer = require('nodemailer');
-// const { sendMail } = require("../mail");
 
 dotenv.config();
 
@@ -13,11 +12,7 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.APP_MAIL,
         pass: process.env.APP_PASSWORD
-    }
-    auth: {
-      user: 'agboolaelijah077@gmail.com',
-      pass: '08060360214',
-    },
+       }
   });
 
 const createUser = async (req, res) => {
