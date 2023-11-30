@@ -51,6 +51,7 @@ const createArtist = async (req, res) => {
                     <h3>${req.body.firstName}</h3>
                 </div>`
           })
+          
       .then((response) => {
         res.json({
           message: "artist created successfully",
