@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 // const nodemailer = require('nodemailer');
-const { sendMail } = require("../mail");
+// const { sendMail } = require("../mail");
 
 dotenv.config();
 
@@ -76,9 +76,13 @@ const createUser = async (req, res) => {
 
         await sendMail({
             from: process.env.APP_MAIL,
-            to: req.body.email,
-            subject: 'Form Submission Confirmation',
-            text: `Thank you for submitting the form, ${req.body.firstName}!`,
+            to: email,
+            subject: ' Prime',
+            text: 'Welcome to our website. Enjoy your stay with us'
+        //     from: process.env.APP_MAIL,
+        //     to: req.body.email,
+        //     subject: 'Form Submission Confirmation',
+        //     text: `Thank you for submitting the form, ${req.body.firstName}!`,
         });
 
         res.json({
