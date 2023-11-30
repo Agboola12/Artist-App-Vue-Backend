@@ -30,29 +30,17 @@ const createUser = async (req, res) => {
         passWord: await bcrypt.hash(req.body.passWord, salt)
     };
     await User.create(usr)
-        //     await transporter.sendMail({
-        //     from: 'process.env.APP_MAIL',
-        //     to: req.body.email,
-        //     subject: 'Prime',
-        //     text: `Welcome to our website. Enjoy your stay with us${req.body.firstName}`
-        //  })
-             const mail = {
-                  from: process.env.APP_MAIL,
-                  to: req.body.email,
-                  subject: '<h1> Prime </h1><br/>',
+            await transporter.sendMail({
+            from: 'process.env.APP_MAIL',
+            to: req.body.email,
+            subject: '<h1> Prime </h1><br/>',
                   text: 
                         `<div>
                             <p>Welcome to our website. Enjoy your stay with us. &nbsp;&nbsp;</p>
                             <h3>${req.body.firstName}</h3>
                         </div>`
-                }
-            transporter.sendMail(mail, function(error, info){
-              if (error) {
-                console.log(error);
-              } else {
-                console.log('Email sent: ' + info.response);
-              }
-            })
+         })
+             
          .then((resp)=>{
              res.json({
                  message: "User account created successfully",
