@@ -4,8 +4,18 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const Music = require("../models/musicModel");
 const BookingInfo = require("../models/bookingInfoModel");
-const {Op} = require ("sequelize")
+const {Op} = require ("sequelize");
+const nodemailer = require('nodemailer');
+
 dotenv.config();
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: process.env.APP_MAIL,
+      pass: process.env.APP_PASSWORD
+     }
+});
 
 const createArtist = async (req, res) => {
   const imageUrl = (req.file.path);
