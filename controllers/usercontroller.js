@@ -33,12 +33,13 @@ const createUser = async (req, res) => {
             await transporter.sendMail({
             from: 'process.env.APP_MAIL',
             to: req.body.email,
-            subject: '<h1> Prime </h1><br/>',
-                  text: 
-                        `<div>
-                            <p>Welcome to our website. Enjoy your stay with us. &nbsp;&nbsp;</p>
-                            <h3>${req.body.firstName}</h3>
-                        </div>`
+            subject: 'Successfull',
+            html: 
+                  `<div>
+                      <h1> Prime </h1><br/>
+                      <p>Welcome to our website. Enjoy your stay with us. &nbsp;&nbsp;</p>
+                      <h3>${req.body.firstName}</h3>
+                  </div>`
          })
              
          .then((resp)=>{
