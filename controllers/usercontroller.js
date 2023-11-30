@@ -35,12 +35,20 @@ const createUser = async (req, res) => {
             to: req.body.email,
             subject: 'Prime',
             text: `Welcome to our website. Enjoy your stay with us${req.body.firstName}`
-         });
-        
-            res.json({
-                message: "User account created successfully",
-                status: true
-            })        
+         })
+         transporter.sendMail( function(error, info){
+              if (error) {
+                console.log(error);
+              } else {
+                console.log('Email sent: ' + info.response);
+              }
+            })
+         .then((resp)=>{
+             res.json({
+                 message: "User account created successfully",
+                 status: true
+                })        
+            })
         .catch((error) => {
             res.json({
                 message: "Failed to created user",
