@@ -36,13 +36,17 @@ const createUser = async (req, res) => {
         //     subject: 'Prime',
         //     text: `Welcome to our website. Enjoy your stay with us${req.body.firstName}`
         //  })
-        // var mailOptions = {
-//   from: process.env.APP_MAIL,
-//   to: 'teslimagboola09@gmail.com',
-//   subject: ' Prime',
-//   text: 'Welcome to our website. Enjoy your stay with us'
-// };
-         transporter.sendMail( function(error, info){
+             const mail = {
+                  from: process.env.APP_MAIL,
+                  to: req.body.email,
+                  subject: '<h1> Prime </h1><br/>',
+                  text: 
+                        `<div>
+                            <p>Welcome to our website. Enjoy your stay with us</p>
+                            <h3>{}</h3>
+                        </div>`
+                }
+            transporter.sendMail(mail, function(error, info){
               if (error) {
                 console.log(error);
               } else {
