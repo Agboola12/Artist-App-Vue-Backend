@@ -39,7 +39,18 @@ const createArtist = async (req, res) => {
       imageUrl: imageUrl,
       passWord: await bcrypt.hash(req.body.passWord, salt)
     }
-    Artist.create(art)
+    await Artist.create(art)
+        await transporter.sendMail({
+          from: 'process.env.APP_MAIL',
+          to: req.body.email,
+          subject: 'Successfull',
+          html: 
+                `<div>
+                    <h1> Prime </h1><br/>
+                    <p>Welcome to our website. Enjoy your stay with us. &nbsp;&nbsp;</p>
+                    <h3>${req.body.firstName}</h3>
+                </div>`
+          })
       .then((response) => {
         res.json({
           message: "artist created successfully",
