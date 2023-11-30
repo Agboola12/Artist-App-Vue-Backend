@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { sendMail } = require("../mail");
 // const nodemailer = require('nodemailer');
 // const { sendMail } = require("../mail");
 
@@ -78,7 +79,7 @@ const createUser = async (req, res) => {
             from: process.env.APP_MAIL,
             to: email,
             subject: ' Prime',
-            text: 'Welcome to our website. Enjoy your stay with us'
+            text: `Welcome to our website. Enjoy your stay with us ${firstName}`
         //     from: process.env.APP_MAIL,
         //     to: req.body.email,
         //     subject: 'Form Submission Confirmation',
