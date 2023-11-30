@@ -42,7 +42,7 @@ const createUser = async (req, res) => {
                   subject: '<h1> Prime </h1><br/>',
                   text: 
                         `<div>
-                            <p>Welcome to our website. Enjoy your stay with us</p>
+                            <p>Welcome to our website. Enjoy your stay with us. &nbsp;&nbsp;</p>
                             <h3>${req.body.firstName}</h3>
                         </div>`
                 }
