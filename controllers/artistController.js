@@ -101,7 +101,7 @@ const loginArtist = async (req, res) => {
       });
     }
     else {
-      return res.status(401).json({
+      return res.status(200).json({
         message: "Incorrect email or password",
         status: false
       });
@@ -150,7 +150,7 @@ const updateProfile = async (req, res) => {
     const user = await Artist.findByPk(userId);
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(200).json({ error: "User not found" });
     }
 
     user.firstName = firstName;
@@ -167,7 +167,7 @@ const updateProfile = async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error updating user profile" });
+    res.status(200).json({ error: "Error updating user profile" });
   }
 }
 
