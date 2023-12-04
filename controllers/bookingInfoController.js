@@ -103,14 +103,27 @@ const Approve =async (req, res) => {
         // console.log(user);
 
         if (!user) {
-          return res.status(404).json({ error: "User not found" });
+          return res.status(200).json({ 
+            status: false,
+            message:"The Booking cannot be found",
+            error: "User not found" 
+          });
         }
         await user.update({ state: true });
     
-        res.status(200).json(user);
-      } catch (error) {
+        res.status(200).json({
+          status: true,
+          message:"The Booking has been approved",
+          user
+        });
+      } 
+      catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error fetching user details" });
+        res.status(200).json({ 
+          status: false,
+          message:"Error in Booking approved",
+          error: "Error fetching Booking approved"
+         });
       }
 }
 

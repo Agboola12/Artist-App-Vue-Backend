@@ -115,7 +115,11 @@ const updateSong = async (req, res)=>{
     try {
         const user = await Music.findByPk(songId);
         if (!user) {
-          return res.status(200).json({ error: "Song not found" });
+          return res.status(200).json({ 
+            status:false,
+            message:"Song cannot found",
+            error: "Song not found" 
+          });
         }
     
         user.songTitle = songTitle;
@@ -130,10 +134,17 @@ const updateSong = async (req, res)=>{
 
         await user.save();
     
-        res.status(200).json(user); 
+        res.status(200).json({
+          status:true,
+          message:"Song Details update successfully",
+          user
+        }); 
       } catch (error) {
         console.error(error);
-        res.status(200).json({ error: "Error updating song details" });
+        res.status(200).json({
+          status:false,
+          message:"Error updating Song ",
+          error: "Error updating song details" });
       }
 }
 
