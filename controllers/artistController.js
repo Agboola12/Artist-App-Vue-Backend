@@ -84,7 +84,7 @@ const loginArtist = async (req, res) => {
       where: { email },
     });
     if (!user) {
-      return res.status(404).json({
+      return res.status(200).json({
         message: 'Artist not found',
         status: false
       });
