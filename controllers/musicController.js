@@ -88,12 +88,19 @@ const delSong = async (req, res) => {
       const music = await Music.findByPk(musicId);
   
       if (!music) {
-        return res.status(200).json({ error: "Music record not found" });
+        return res.status(200).json({ 
+          status:false,
+          message:"Problem with deleting the song",
+          error: "Music record not found" 
+        });
       }
   
       await music.destroy();
   
-      res.status(204).end(); 
+      res.status(204).end({
+        status:true,
+        message:"Problem with deleting the song",
+    }); 
     } catch (error) {
       console.error(error);
       res.status(200).json({ error: "Error deleting music record" });

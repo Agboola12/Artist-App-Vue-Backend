@@ -150,7 +150,7 @@ const updateProfile = async (req, res) => {
     const user = await Artist.findByPk(userId);
 
     if (!user) {
-      return res.status(200).json({ error: "User not found" });
+      return res.status(200).json({ error: "Artist not found" });
     }
 
     user.firstName = firstName;
@@ -164,7 +164,11 @@ const updateProfile = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json(user);
+    res.status(200).json({
+      status: true,
+      message:"Profile Updated Sucessfully",  
+      user
+    });
   } catch (error) {
     console.error(error);
     res.status(200).json({ error: "Error updating user profile" });

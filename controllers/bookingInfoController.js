@@ -7,7 +7,7 @@ const {Op} = require ("sequelize")
 dotenv.config();
 
 const bookingInfo = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
     try {
       const info = {
         address: req.body.address,
@@ -27,14 +27,14 @@ const bookingInfo = async (req, res) => {
       }
       BookingInfo.create(info)
         .then((response) => {
-          res.json({
+          res.status(200).json({
             message: "Booking information created successfully",
             status: true,
             response
           })
         })
         .catch((err) => {
-          res.status(400).json({
+          res.status(200).json({
             message: " error in Booking information creating ",
             status: false
           })
