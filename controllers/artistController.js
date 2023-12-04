@@ -53,14 +53,14 @@ const createArtist = async (req, res) => {
           })
           
       .then((response) => {
-        res.json({
-          message: "artist created successfully",
+        res.status(200).json({
+          message: "Artist account created successfully",
           status: true
         })
       })
       .catch((err) => {
-        res.status(400).json({
-          message: " error in artist creating ",
+        res.status(200).json({
+          message: " Error in creating ",
           status: false
         })
         console.log(err);
