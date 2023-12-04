@@ -108,7 +108,7 @@ const updateSong = async (req, res)=>{
     try {
         const user = await Music.findByPk(songId);
         if (!user) {
-          return res.status(404).json({ error: "Song not found" });
+          return res.status(200).json({ error: "Song not found" });
         }
     
         user.songTitle = songTitle;
