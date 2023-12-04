@@ -20,14 +20,14 @@ const createMusic = async(req,res) =>{
         };
         Music.create(newUser)
         .then((response) => {
-            res.json({
+            res.status(200).json({
                 message: "music upload successfully",
                 status: true
             })
             console.log(response);
           })
           .catch((err) => {
-            res.status(400).json({
+            res.status(200).json({
               message: " error in music uploading ",
               status: false
             })
@@ -88,7 +88,7 @@ const delSong = async (req, res) => {
       const music = await Music.findByPk(musicId);
   
       if (!music) {
-        return res.status(404).json({ error: "Music record not found" });
+        return res.status(200).json({ error: "Music record not found" });
       }
   
       await music.destroy();
@@ -96,7 +96,7 @@ const delSong = async (req, res) => {
       res.status(204).end(); 
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error deleting music record" });
+      res.status(200).json({ error: "Error deleting music record" });
     }
 
 }
@@ -126,7 +126,7 @@ const updateSong = async (req, res)=>{
         res.status(200).json(user); 
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error updating song details" });
+        res.status(200).json({ error: "Error updating song details" });
       }
 }
 
