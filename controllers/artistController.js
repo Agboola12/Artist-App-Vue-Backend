@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const Music = require("../models/musicModel");
 const BookingInfo = require("../models/bookingInfoModel");
 const {Op} = require ("sequelize");
+const { validationResult, body } = require('express-validator');
 const nodemailer = require('nodemailer');
 
 dotenv.config();
@@ -17,7 +18,7 @@ const transporter = nodemailer.createTransport({
      }
 });
 
-const validateCreateUser = [
+const validateArtist = [
   body('firstName').notEmpty().withMessage('firstName is required'),
   body('email').isEmail().withMessage('Invalid email format'),
   body('passWord').isLength({ min: 10 }).withMessage('Password must be at least 10 characters'),
@@ -331,4 +332,4 @@ const artistAppointment = async (req, res) => {
 }
 
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, artistAppointment , getBands, artistNotice,getDjs, getMusicArtist, popularArtist, getArtistDetails }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist,validateArtist ,artistAppointment , getBands, artistNotice,getDjs, getMusicArtist, popularArtist, getArtistDetails }
