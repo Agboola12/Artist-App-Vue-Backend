@@ -35,7 +35,7 @@ const bookingInfo = async (req, res) => {
         })
         .catch((err) => {
           res.status(200).json({
-            message: " You have to fill the booking form before you can hire Booking information creating ",
+            message: " You have to fill the booking form before you can hire the",
             status: false
           })
           console.log(err);
