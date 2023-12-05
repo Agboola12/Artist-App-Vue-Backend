@@ -21,7 +21,13 @@ const transporter = nodemailer.createTransport({
 const validateArtist = [
   body('firstName').notEmpty().withMessage('firstName is required'),
   body('email').isEmail().withMessage('Invalid email format'),
-  body('passWord').isLength({ min: 10 }).withMessage('Password must be at least 10 characters'),
+  body('artistType').notEmpty().withMessage('artistType is required'),
+  body('mobile').notEmpty().withMessage('mobile is required'),
+  body('musicType').notEmpty().withMessage('musicType is required'),
+  body('state').isLength({ min: 10 }).withMessage('state must be at least 10 characters'),
+  body('country').isLength({ min: 10 }).withMessage('country must be at least 10 characters'),
+  body('imageUrl').isLength({ min: 10 }).withMessage('imageUrl must be at least 10 characters'),
+  body('passWord').isLength({ min: 10 }).withMessage('passWord must be at least 10 characters'),
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
