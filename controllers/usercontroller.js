@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const nodemailer = require('nodemailer');
+const { validationResult, check } = require('express-validator');
+
 
 dotenv.config();
 
@@ -13,6 +15,18 @@ const transporter = nodemailer.createTransport({
         pass: process.env.APP_PASSWORD
        }
   });
+
+  const validateCreateUser = [
+    check('username').notEmpty().withMessage('Username is required'),
+    check('email').isEmail().withMessage('Invalid email format'),
+    async (req, res, next) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      next();
+    },
+  ]; 
 
 const createUser = async (req, res) => {
     const user = await User.findOne({ where: { email: req.body.email } })
