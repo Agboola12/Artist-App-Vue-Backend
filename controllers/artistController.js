@@ -24,10 +24,10 @@ const validateArtist = [
   body('artistType').notEmpty().withMessage('artistType is required'),
   body('mobile').notEmpty().withMessage('mobile is required'),
   body('musicType').notEmpty().withMessage('musicType is required'),
-  body('state')..notEmpty().withMessage('state must be at least 10 characters'),
-  body('country')..notEmpty().withMessage('country must be at least 10 characters'),
-  body('imageUrl')..notEmpty().withMessage('imageUrl must be at least 10 characters'),
-  body('passWord')..notEmpty().withMessage('passWord must be at least 10 characters'),
+  body('state').notEmpty().withMessage('state is required'),
+  body('country').notEmpty().withMessage('country is required'),
+  body('imageUrl').notEmpty().withMessage('imageUrl is required'),
+  body('passWord').isLength({ min: 10 }).withMessage('passWord must be at least 10 characters'),
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
