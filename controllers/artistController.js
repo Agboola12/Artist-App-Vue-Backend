@@ -17,6 +17,22 @@ const transporter = nodemailer.createTransport({
      }
 });
 
+const validateCreateUser = [
+  body('firstName').notEmpty().withMessage('firstName is required'),
+  body('email').isEmail().withMessage('Invalid email format'),
+  body('passWord').isLength({ min: 10 }).withMessage('Password must be at least 10 characters'),
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(200).json({ 
+          message: "fill the form correctly",
+          status: false,
+          errors: errors.array() });
+    }
+    next();
+  },
+]; 
+
 const createArtist = async (req, res) => {
   const imageUrl = (req.file.path);
   try {
