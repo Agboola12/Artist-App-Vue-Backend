@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const nodemailer = require('nodemailer');
-const { validationResult, check } = require('express-validator');
+const { validationResult, body } = require('express-validator');
 
 
 dotenv.config();
@@ -17,12 +17,16 @@ const transporter = nodemailer.createTransport({
   });
 
   const validateCreateUser = [
-    check('firstName').notEmpty().withMessage('firstName is required'),
-    check('email').isEmail().withMessage('Invalid email format'),
+    body('firstName').notEmpty().withMessage('firstName is required'),
+    body('email').isEmail().withMessage('Invalid email format'),
+    body('passWord').isLength({ min: 10 }).withMessage('Password must be at least 10 characters'),
     async (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(200).json({ 
+            message: "fill the form correctly",
+            status: false,
+            errors: errors.array() });
       }
       next();
     },
