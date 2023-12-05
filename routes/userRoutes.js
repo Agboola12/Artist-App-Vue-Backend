@@ -1,5 +1,5 @@
 const express=require("express");
-const { createUser, loginUser, getUser}=require("../controllers/usercontroller");
+const { createUser, loginUser, getUser, validateCreateUser}=require("../controllers/usercontroller");
 const { createArtist, loginArtist, getArtist, updateProfile, getAllArtist, getBands, getDjs, getMusicArtist, 
     popularArtist, getArtistDetails, artistNotice, artistAppointment } = require("../controllers/artistController");
 const { verifyToken } = require("../middlewares/authMiddleware");
@@ -11,7 +11,7 @@ const { bookingInfo, getBookingInfo, infoDetail, Approve } = require("../control
 const Router=express.Router();
 
 // users
-Router.post('/createUser',createUser);
+Router.post('/createUser',validateCreateUser ,createUser);
 Router.post('/loginUser', loginUser);
 Router.get('/getUser',verifyToken, getUser)
 

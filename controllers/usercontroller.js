@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
   });
 
   const validateCreateUser = [
-    check('username').notEmpty().withMessage('Username is required'),
+    check('firstName').notEmpty().withMessage('firstName is required'),
     check('email').isEmail().withMessage('Invalid email format'),
     async (req, res, next) => {
       const errors = validationResult(req);
@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport({
     },
   ]; 
 
-const createUser = async (req, res) => {
+const createUser =  async (req, res) => {
     const user = await User.findOne({ where: { email: req.body.email } })
     if (user) {
         return res.status(200).json({
@@ -178,4 +178,4 @@ const getUser = async (req, res) => {
 }
 
 
-module.exports = { createUser, loginUser, getUser }
+module.exports = { createUser, loginUser, getUser, validateCreateUser }
