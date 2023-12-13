@@ -3,7 +3,7 @@ const Music = require("../models/musicModel");
 const createMusic = async(req,res) =>{
   try{
     if(req.files){
-      const imageUrl = req.files['image'][0].path;
+      const imageUrl = req.files['imageUrl'][0].path;
       const mp3Url = req.files['mp3'][0].path;
       
       const newUser = {
