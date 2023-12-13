@@ -18,29 +18,32 @@ const transporter = nodemailer.createTransport({
      }
 });
 
-const validateArtist = [
-  body('firstName').notEmpty().withMessage('firstName is required'),
-  body('email').isEmail().withMessage('Invalid email format'),
-  body('artistType').notEmpty().withMessage('artistType is required'),
-  body('mobile').notEmpty().withMessage('mobile is required'),
-  body('musicType').notEmpty().withMessage('musicType is required'),
-  body('state').notEmpty().withMessage('state is required'),
-  body('country').notEmpty().withMessage('country is required'),
-  body('imageUrl').notEmpty().withMessage('imageUrl is required'),
-  body('passWord').isLength({ min: 10 }).withMessage('passWord must be at least 10 characters'),
-  async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(200).json({ 
-          message: "fill the form correctly",
-          status: false,
-          errors: errors.array() });
-    }
-    next();
-  },
-]; 
+
+
+// const validateArtist = [
+//   body('firstName').notEmpty().withMessage('firstName is required'),
+//   body('email').isEmail().withMessage('Invalid email format'),
+//   body('artistType').isEmpty().withMessage('artistType format'),
+//   body('mobile').isEmpty().withMessage('mobile format'),
+//   body('musicType').isEmpty().withMessage('musicType format'),
+//   body('state').isEmpty().withMessage('state format'),
+//   body('country').isEmpty().withMessage('country format'),
+//   body('imageUrl').isEmpty().withMessage('imageUrl format'),
+//   body('passWord').isLength({ min: 10 }).withMessage('Password must be at least 10 characters'),
+//   async (req, res, next) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(200).json({ 
+//           message: "fill the form correctly",
+//           status: false,
+//           errors: errors.array() });
+//     }
+//     next();
+//   },
+// ];
 
 const createArtist = async (req, res) => {
+  console.log(req.body)
   const imageUrl = (req.file.path);
   try {
     const user = await Artist.findOne({ where: { email: req.body.email } })
@@ -338,4 +341,4 @@ const artistAppointment = async (req, res) => {
 }
 
 
-module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist,validateArtist ,artistAppointment , getBands, artistNotice,getDjs, getMusicArtist, popularArtist, getArtistDetails }
+module.exports = { createArtist, loginArtist, getArtist, updateProfile, getAllArtist ,artistAppointment , getBands, artistNotice,getDjs, getMusicArtist, popularArtist, getArtistDetails }
