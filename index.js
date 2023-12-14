@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
+const path = require('path');
+
 const app = express();
 const {sequelize}=require("./connection");
 const userRoute=require("./routes/userRoutes")
@@ -20,13 +22,17 @@ app.use(express.urlencoded({extended:true}));
 })()
 
 
+// app.get('/',(req,res)=>{
+//     res.json({
+//         message:"You are welcome to back end"
+//     })
+// })
+app.use(express.static(path.join(__dirname, 'dist')));
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+  });
 
-app.get('/',(req,res)=>{
-    res.json({
-        message:"You are welcome to back end"
-    })
-})
 app.use("/",userRoute)
 
 app.listen(8000,()=>{
