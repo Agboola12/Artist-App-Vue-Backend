@@ -76,45 +76,6 @@ const createUser =  async (req, res) => {
         })
 }
 
-// const createUser = async (req, res) => {
-//     try {
-//         const user = await User.findOne({ where: { email: req.body.email } });
-
-//         if (user) {
-//             return res.status(200).json({
-//                 message: "Email already exists",
-//                 status: false
-//             });
-//         }
-
-//         const salt = await bcrypt.genSalt(10);
-//         const hashedPassword = await bcrypt.hash(req.body.passWord, salt);
-
-//         await User.create({
-//             firstName: req.body.firstName,
-//             email: req.body.email,
-//             passWord: hashedPassword
-//         });
-
-//         await sendMail({
-//             from: process.env.APP_MAIL,
-//             to: req.body.email,
-//             subject: ' Prime',
-//             text: `Welcome to our website. Enjoy your stay with us ${req.body.firstName}`
-//         });
-
-//         res.json({
-//             message: "User account created successfully",
-//             status: true
-//         });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({
-//             message: "Failed to create user",
-//             status: false
-//         });
-//     }
-// }
 
 
 const loginUser = async(req, res)=>{
@@ -149,12 +110,12 @@ const loginUser = async(req, res)=>{
     } catch (error) {
             res.status(200).json({
                 message:'User not found', 
-                status:  false});
+                status:  false
+            });
+            console.error(error);
           }
-        console.error(error);
     }
 
-}
 
 const getUser = async (req, res) => {
     let data = await jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
