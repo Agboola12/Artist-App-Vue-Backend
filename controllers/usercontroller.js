@@ -147,10 +147,15 @@ const loginUser = async(req, res)=>{
         });
       }
     } catch (error) {
-        res.status(200).json({
-            message: "User not found", 
-            status: false, 
-        });
+        if (error.status === 404) {
+            res.status(200).json({
+                message:'User not found', 
+                status:  false});
+          } else {
+            console.error('Error:', error.message);
+          }
+        // res.status(200).json({
+        // });
         console.error(error);
     }
 
