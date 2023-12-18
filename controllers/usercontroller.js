@@ -148,7 +148,8 @@ const loginUser = async(req, res)=>{
       }
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error during login" });
+      res.status(200).json({
+         error: "Error during login" });
     }
 
 }
