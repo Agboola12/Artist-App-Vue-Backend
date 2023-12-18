@@ -147,9 +147,11 @@ const loginUser = async(req, res)=>{
         });
       }
     } catch (error) {
-      console.error(error);
-      res.status(200).json({
-         error: "Error during login" });
+        res.status(200).json({
+            message: "Email or Password is not correct", 
+            status: false, 
+        });
+        console.error(error);
     }
 
 }
