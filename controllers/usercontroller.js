@@ -148,7 +148,7 @@ const loginUser = async(req, res)=>{
       }
     } catch (error) {
         res.status(200).json({
-            message: "Email or Password is not correct", 
+            message: "User not found", 
             status: false, 
         });
         console.error(error);
